@@ -1,0 +1,63 @@
+body, html {
+    height: 100%;
+    margin-left: 0px;
+    padding: 0px;
+}
+.header{
+    height: 100vh;
+    /* background-image: url("../image/background.png"); */
+    background-image: url("../../static/image/image-app/background.png");
+    /* Full height */
+    /* height: 100%; */
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.u-nav-bar{
+    background-color: none !important;
+    border: none !important;
+    color: white;
+}
+.u-word-color{
+    color: white !important;
+}
+
+.u-nav-bar-center{
+    margin-left: 35%;
+}
+.u-card-content{
+    background: none !important;
+    border: none !important;
+}
+.u-margin-card-group{
+    padding-top: 50px;
+}
+.u-border-card{
+    border: none;
+}
+.u-box-san-pham{
+    padding-bottom: 50px;
+}
+.u-title-sanpham{
+    padding: 70px;
+}
+.u-image-san-pham{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.footer{
+    background-image: url("../image/footer-background-dark.png");
+    background-image: url("../../static/image/image-app/footer-background-dark.png");
+    /* Full height */
+    height: fit-content;
+    /* Center and scale the image nicely */
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.u-text-area{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
