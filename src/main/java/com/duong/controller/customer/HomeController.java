@@ -1,4 +1,4 @@
-package com.duong.controller;
+package com.duong.controller.customer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

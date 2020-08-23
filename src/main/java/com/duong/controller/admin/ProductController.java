@@ -1,4 +1,4 @@
-package com.duong.controller;
+package com.duong.controller.admin;
 
 import java.util.List;
 

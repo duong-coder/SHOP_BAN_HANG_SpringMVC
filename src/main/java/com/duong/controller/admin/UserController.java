@@ -1,4 +1,4 @@
-package com.duong.controller;
+package com.duong.controller.admin;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.duong.controller;
+package com.duong.controller.customer;
 
 import java.sql.SQLException;
 
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,5 +61,28 @@ public class SignInOutController {
 		httpSession.removeAttribute("userLogin");
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
+	public String getSignUp(HttpServletRequest request) {
+		request.setAttribute("userRegister", new UserDTO());
+		
+		return "/home-user/dang-ky";
+	}
+	
+	@RequestMapping(value = "/sign-up", method = RequestMethod.POST)
+	public String postSignUp(HttpServletRequest request,
+			@ModelAttribute(value = "userRegister") UserDTO dto) {
+		try {
+			dto.setRole("ROLE_KHACH");
+			userService.insertUser(dto);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			return "redirect:/sign-up";
+		}
+		
+		return "redirect:/sign-in";
 	}
 }
