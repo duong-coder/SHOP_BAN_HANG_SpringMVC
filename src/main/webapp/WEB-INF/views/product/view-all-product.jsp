@@ -27,7 +27,6 @@
 				<td>${productDTO.gia }</td>
 				<td>${productDTO.soLuong }</td>
 				<td>
-					<a href="<c:url value='/admin/add-to-cart/${productDTO.maSp}'/>">Them vao gio hang</a>
 					<a href="<c:url value='/admin/product-detail/${productDTO.maSp}'/>">Chi tiet</a>
 					<a href="<c:url value='/admin/edit-product/${productDTO.maSp}'/>">Sua</a>
 					<a href="<c:url value='/admin/delete-product/${productDTO.maSp}'/>">Xoa</a>

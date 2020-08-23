@@ -11,7 +11,8 @@ body{
     margin-right: 0px;
     padding-right: 0px;
     float: left;
-    background-image: url("../image/background-login.png");
+    background-image: url("../image/image-app/background-login.png");
+    /* background-image: url("../../static/image/image-app/background.png"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

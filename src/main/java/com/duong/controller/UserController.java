@@ -38,11 +38,9 @@ public class UserController {
 			userService.insertUser(dto);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
-			return "redirect:/all-user";
 		}
 		
-		return "/user/form-user";
+		return "redirect:/all-user" ;
 	}
 	
 	@RequestMapping(value = "/all-user", method = RequestMethod.GET)

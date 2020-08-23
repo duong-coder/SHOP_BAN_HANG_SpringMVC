@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +60,18 @@ public class UserDAOImpl implements UserDAO{
 		return criteria.list();
 	}
 	
+	@Override
+	public Nguoidung getSignInByMaNguoiDung(String usename, String password) throws SQLException{
+		Session session = sessionFactory.openSession();
+		String hql = "from Nguoidung where maNguoiDung = :username AND matKhau = :password";
+		Query query = session.createQuery(hql);
+		query.setParameter("username",usename);
+		query.setParameter("password",password);
+		Object object = query.uniqueResult();
+		Nguoidung nguoidung = null;
+		if(object != null) {
+			nguoidung = (Nguoidung) object;
+		}
+		return nguoidung;
+	}
 }

@@ -9,7 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-${3 + 2}
+    <jsp:include page="../../layouts/header.jsp"/>
+	<jsp:include page="../../layouts/menu-bar.jsp"/>
+	
 <c:url value="/admin/add-user" var="urlAddUser" />
 <form:form action="./add-user" method="post" modelAttribute="userDTO">
 	<form:hidden path="ID" />
@@ -37,7 +39,10 @@ ${3 + 2}
 	<p>ROLE</p>
 	Khach:<form:radiobutton path="role" value="ROLE_KHACH"/>
 	Admin:<form:radiobutton path="role" value="ROLE_ADMIN"/>
+	<br/>
 	<button type="submit">Submit</button>
+	
+	<jsp:include page="../../layouts/footer.jsp"/>
 </form:form>
 </body>
 </html>

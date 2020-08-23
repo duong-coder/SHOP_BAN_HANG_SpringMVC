@@ -27,4 +27,6 @@ public interface UserDAO {
 	void updateUser(Nguoidung nguoidung) throws SQLException;
 
 	void insertUser(Nguoidung nguoidung) throws SQLException;
+
+	Nguoidung getSignInByMaNguoiDung(String usename, String password) throws SQLException;
 }

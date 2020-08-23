@@ -27,4 +27,6 @@ public interface UserService {
 	void updateUser(UserDTO userDTO) throws SQLException;
 
 	void insertUser(UserDTO userDTO) throws SQLException;
+
+	UserDTO getSignInByMaNguoiDung(String username, String password) throws SQLException;
 }

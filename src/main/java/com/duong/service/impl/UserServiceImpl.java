@@ -94,10 +94,29 @@ public class UserServiceImpl implements UserService {
 			dto.setAddress(nd.getDiaChi());
 			dto.setPhone(nd.getSoDT());
 			dto.setRole(nd.getRole());
-			
+
 			userDTOs.add(dto);
 		});
 		return userDTOs;
 	}
 
+	@Override
+	public UserDTO getSignInByMaNguoiDung(String username, String password) throws SQLException {
+		Nguoidung nd = userDAO.getSignInByMaNguoiDung(username, password);
+		if (nd == null) {
+			return null;
+		}
+		UserDTO dto = new UserDTO();
+		dto.setID(nd.getId());
+		dto.setUsername(nd.getMaNguoiDung());
+		dto.setPass(nd.getMatKhau());
+		dto.setName(nd.getHoTen());
+		dto.setGender(nd.getGioiTinh());
+		dto.setEmail(nd.getEmail());
+		dto.setAddress(nd.getDiaChi());
+		dto.setPhone(nd.getSoDT());
+		dto.setRole(nd.getRole());
+
+		return dto;
+	}
 }

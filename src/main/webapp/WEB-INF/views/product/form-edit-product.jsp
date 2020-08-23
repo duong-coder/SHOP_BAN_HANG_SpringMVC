@@ -9,6 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="../../layouts/header.jsp"/>
+	<jsp:include page="../../layouts/menu-bar.jsp"/>
+	
 	<c:url value="/admin/edit-product" var="urlEditProduct"/>
 	<form:form action="${urlEditProduct }" modelAttribute="productDTO" 
 				method="POST" 
@@ -33,9 +36,11 @@
 		<form:hidden path="tenAnh"/> <br/>		
 		
 		Hinh anh <br/>
-		<input type="file" name="file" />
+		<input type="file" name="file" /> <br>
 		
 		<button type="submit">Submit</button>
 	</form:form>
+	
+	<jsp:include page="../../layouts/footer.jsp"/>
 </body>
 </html>
