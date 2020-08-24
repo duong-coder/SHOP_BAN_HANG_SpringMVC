@@ -5,7 +5,7 @@
         <div class="header ">
             <nav class="navbar sticky-top navbar-expand-lg navbar-light u-nav-bar">
                 <a class="navbar-brand" href="#">
-                    <img src="<c:url value="static/image/image-app/logo-shop.jpg" />" alt="" width="80px" height="80px">
+                    <img src="<c:url value="/static/image/image-app/logo-shop.jpg" />" alt="" width="80px" height="80px">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -20,7 +20,7 @@
                                     class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link u-word-color" href="#">SẢN PHẨM</a>
+                            <a class="nav-link u-word-color" href="<c:url value='/products/all-product'/>">SẢN PHẨM</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link u-word-color" href="#">DỊCH VỤ</a>
@@ -51,7 +51,7 @@
                         </li>
                     </ul>
                     <a class="navbar-brand" href="#">
-                        <img src="<c:url value="static/image/image-app/icons8-shopping-cart-64.png" />"alt="" width="50px" height="50px">
+                        <img src="<c:url value="/static/image/image-app/icons8-shopping-cart-64.png" />"alt="" width="50px" height="50px">
                     </a>
                 </div>
             </nav>

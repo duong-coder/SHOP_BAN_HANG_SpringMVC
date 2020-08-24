@@ -2,6 +2,7 @@ package com.duong.service;
 
 import java.util.List;
 
+import com.duong.entity.Sanpham;
 import com.duong.model.ProductDTO;
 
 public interface ProductService {
@@ -14,4 +15,6 @@ public interface ProductService {
 	ProductDTO getProuctByMaSp(String maSp ) throws Exception;
 	
 	List<ProductDTO> getAllProduct() throws Exception;
+	
+	List<ProductDTO> getTopProduct(int soLuong) throws Exception;
 }

@@ -24,7 +24,7 @@
 		<p style="color:red;"><form:errors path="tenSp" /> </p>
 		
 		MO TA <br/>
-		<form:input path="moTa"/> <br/>
+		<form:textarea path="moTa"/> <br/>
 		
 		GIA <br/>
 		<form:input path="gia"/> <br/>

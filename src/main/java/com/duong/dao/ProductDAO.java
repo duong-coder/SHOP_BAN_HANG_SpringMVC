@@ -14,4 +14,6 @@ public interface ProductDAO {
 	Sanpham getProuctByMaSp(String maSp ) throws Exception;
 	
 	List<Sanpham> getAllProduct() throws Exception;
+	
+	List<Sanpham> getTopProduct(int soLuong) throws Exception;
 }

@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="static/css/trangchu.css">
+    <link rel="stylesheet" href="../static/css/trangchu.css">
 
 </head>
 
@@ -22,7 +22,7 @@
 	
     <div class="container-fluid">
     	<jsp:include page="../../layouts/header-home.jsp"/>
-
+<%-- 
         <div class="text-center u-margin-card-group">
             <div class="card-group ">
                 <div class="card u-border-card">
@@ -49,23 +49,24 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --%>
+        
         <div class="container text-center u-box-san-pham">
-            <h2 class="u-title-sanpham">SẢN PHẨM HOT</h2>
+            <h2 class="u-title-sanpham">TẤT CẢ SẢN PHẨM</h2>
             <div class="row row-cols-1 row-cols-md-4">
             	<c:forEach items="${productDTOs }" var="productDTO">
             		<div class="col mb-4">
-                    <div class="card h-100">
-                    	<a href="<c:url value="/products/${productDTO.maSp }" />">
-	                        <img src="<c:url value="/imageProducts/${productDTO.tenAnh }" />" class="card-img-top u-image-san-pham"
-	                            alt="..." width="253px" height="253px">
-	                    </a>
-                        <div class="card-body">
-                            <h5 class="card-title">${productDTO.tenSp }</h5>
-                            <p class="card-text" style="color: rgb(240, 109, 109);">${productDTO.gia }</p>
-                        </div>
-                    </div>
-                </div>
+	                    <div class="card h-100">
+	                    	<a href="<c:url value="/products/${productDTO.maSp }" />">
+	                        	<img src="<c:url value="/imageProducts/${productDTO.tenAnh }" />" class="card-img-top u-image-san-pham"
+	                            	alt="..." width="253px" height="253px">
+	                        </a>
+	                        <div class="card-body">
+	                            <h5 class="card-title">${productDTO.tenSp }</h5>
+	                            <p class="card-text" style="color: rgb(240, 109, 109);">${productDTO.gia }</p>
+	                        </div>
+                    	</div>
+                	</div>
             	</c:forEach>
             </div>
         </div>

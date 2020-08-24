@@ -86,5 +86,22 @@ public class ProductServiceImpl implements ProductService{
 		});
 		return productDTOs;
 	}
-
+	
+	@Override
+	public List<ProductDTO> getTopProduct(int soLuong) throws Exception {
+		List<Sanpham> sanphams = productDAO.getTopProduct(soLuong);
+		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
+		sanphams.forEach((sp) ->{
+			ProductDTO dto = new ProductDTO();
+			dto.setMaSp(sp.getMaSP());
+			dto.setTenSp(sp.getTenSP());
+			dto.setMoTa(sp.getMoTa());
+			dto.setGia(sp.getGia());
+			dto.setSoLuong(sp.getSoLuong());
+			dto.setTenAnh(sp.getAnhMoTa());
+			
+			productDTOs.add(dto);
+		});
+		return productDTOs;
+	}
 }
