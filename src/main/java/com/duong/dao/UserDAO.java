@@ -3,9 +3,7 @@ package com.duong.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.hibernate.HibernateException;
-
-import com.duong.entity.Nguoidung;
+import com.duong.entity.NguoiDung;
 
 public interface UserDAO {
 //	void insertUser(Nguoidung nguoidung) throws HibernateException;
@@ -18,15 +16,15 @@ public interface UserDAO {
 //
 //	List<Nguoidung> getAllUser() throws HibernateException;
 
-	List<Nguoidung> getAllUser() throws SQLException;
+	List<NguoiDung> getAllUser() throws SQLException;
 
-	Nguoidung getUserById(int id) throws SQLException;
+	NguoiDung getUserById(int id) throws SQLException;
 
 	void deleteUserById(int id) throws SQLException;
 
-	void updateUser(Nguoidung nguoidung) throws SQLException;
+	void updateUser(NguoiDung nguoidung) throws SQLException;
 
-	void insertUser(Nguoidung nguoidung) throws SQLException;
+	void insertUser(NguoiDung nguoidung) throws SQLException;
 
-	Nguoidung getSignInByMaNguoiDung(String usename, String password) throws SQLException;
+	NguoiDung getSignInByMaNguoiDung(String usename, String password) throws SQLException;
 }

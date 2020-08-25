@@ -22,7 +22,7 @@ import com.duong.uitils.ReadWrite;
 public class ProductController {
 
 	@Autowired
-	ProductService productService;
+	private ProductService productService;
 	@Autowired
 	ReadWrite readWrite;
 

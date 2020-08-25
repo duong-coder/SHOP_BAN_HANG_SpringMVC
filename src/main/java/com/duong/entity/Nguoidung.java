@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="nguoidung")
-public class Nguoidung implements Serializable {
+public class NguoiDung implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -45,7 +45,7 @@ public class Nguoidung implements Serializable {
 	@Column(name = "TinhTrang")
 	private String tinhTrang;
 
-	public Nguoidung() {
+	public NguoiDung() {
 	}
 
 	public int getId() {

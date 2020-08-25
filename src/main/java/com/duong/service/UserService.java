@@ -3,8 +3,6 @@ package com.duong.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.hibernate.HibernateException;
-
 import com.duong.model.UserDTO;
 
 public interface UserService {

@@ -1,6 +1,8 @@
 package com.duong.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -10,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "sanpham")
-public class Sanpham implements Serializable {
+public class SanPham implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,13 +28,13 @@ public class Sanpham implements Serializable {
 	@Column(name = "MoTa")
 	private String moTa;
 	
-	@Column(name = "SoLuong")
-	private int soLuong;
-	
 	@Column(name = "TenSP")
 	private String tenSP;
+	
+	@OneToMany(mappedBy="sanPham")
+	private List<ChiTietSanPham> chiTietSanPhams;
 
-	public Sanpham() {
+	public SanPham() {
 	}
 
 	public String getMaSP() {
@@ -67,14 +69,6 @@ public class Sanpham implements Serializable {
 		this.moTa = moTa;
 	}
 
-	public int getSoLuong() {
-		return this.soLuong;
-	}
-
-	public void setSoLuong(int soLuong) {
-		this.soLuong = soLuong;
-	}
-
 	public String getTenSP() {
 		return this.tenSP;
 	}
@@ -82,5 +76,14 @@ public class Sanpham implements Serializable {
 	public void setTenSP(String tenSP) {
 		this.tenSP = tenSP;
 	}
+
+	public List<ChiTietSanPham> getChiTietSanPhams() {
+		return chiTietSanPhams;
+	}
+
+	public void setChiTietSanPhams(List<ChiTietSanPham> chiTietSanPhams) {
+		this.chiTietSanPhams = chiTietSanPhams;
+	}
+	
 
 }

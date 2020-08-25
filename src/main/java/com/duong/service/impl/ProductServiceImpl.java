@@ -7,8 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.duong.dao.ProductDAO;
-import com.duong.entity.Sanpham;
+import com.duong.entity.ChiTietSanPham;
+import com.duong.entity.MauSac;
+import com.duong.entity.SanPham;
+import com.duong.entity.SizeSanPham;
+import com.duong.model.ColorDTO;
 import com.duong.model.ProductDTO;
+import com.duong.model.ProductDetailDTO;
+import com.duong.model.SizeDTO;
 import com.duong.service.ProductService;
 
 @Service
@@ -19,12 +25,11 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public void insertProduct(ProductDTO proDTO) throws Exception {
-		Sanpham sp = new Sanpham();
+		SanPham sp = new SanPham();
 		sp.setMaSP(proDTO.getMaSp());
 		sp.setTenSP(proDTO.getTenSp());
 		sp.setMoTa(proDTO.getMoTa());
 		sp.setGia(proDTO.getGia());
-		sp.setSoLuong(proDTO.getSoLuong());
 		sp.setAnhMoTa(proDTO.getTenAnh());
 		
 		productDAO.insertProduct(sp);
@@ -34,12 +39,11 @@ public class ProductServiceImpl implements ProductService{
 	public void updateProduct(ProductDTO proDTO) throws Exception {
 		ProductDTO dto = getProuctByMaSp(proDTO.getMaSp());
 		if(dto!= null) {
-			Sanpham sp = new Sanpham();
+			SanPham sp = new SanPham();
 			sp.setMaSP(proDTO.getMaSp());
 			sp.setTenSP(proDTO.getTenSp());
 			sp.setMoTa(proDTO.getMoTa());
 			sp.setGia(proDTO.getGia());
-			sp.setSoLuong(proDTO.getSoLuong());
 			sp.setAnhMoTa(proDTO.getTenAnh());
 			
 			productDAO.updateProduct(sp);
@@ -57,13 +61,12 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public ProductDTO getProuctByMaSp(String maSp) throws Exception {
-		Sanpham sp = productDAO.getProuctByMaSp(maSp);
+		SanPham sp = productDAO.getProuctByMaSp(maSp);
 		ProductDTO dto = new ProductDTO();
 		dto.setMaSp(sp.getMaSP());
 		dto.setTenSp(sp.getTenSP());
 		dto.setMoTa(sp.getMoTa());
 		dto.setGia(sp.getGia());
-		dto.setSoLuong(sp.getSoLuong());
 		dto.setTenAnh(sp.getAnhMoTa());
 		
 		return dto;
@@ -71,7 +74,7 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public List<ProductDTO> getAllProduct() throws Exception {
-		List<Sanpham> sanphams = productDAO.getAllProduct();
+		List<SanPham> sanphams = productDAO.getAllProduct();
 		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
 		sanphams.forEach((sp) ->{
 			ProductDTO dto = new ProductDTO();
@@ -79,7 +82,6 @@ public class ProductServiceImpl implements ProductService{
 			dto.setTenSp(sp.getTenSP());
 			dto.setMoTa(sp.getMoTa());
 			dto.setGia(sp.getGia());
-			dto.setSoLuong(sp.getSoLuong());
 			dto.setTenAnh(sp.getAnhMoTa());
 			
 			productDTOs.add(dto);
@@ -89,7 +91,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public List<ProductDTO> getTopProduct(int soLuong) throws Exception {
-		List<Sanpham> sanphams = productDAO.getTopProduct(soLuong);
+		List<SanPham> sanphams = productDAO.getTopProduct(soLuong);
 		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
 		sanphams.forEach((sp) ->{
 			ProductDTO dto = new ProductDTO();
@@ -97,11 +99,50 @@ public class ProductServiceImpl implements ProductService{
 			dto.setTenSp(sp.getTenSP());
 			dto.setMoTa(sp.getMoTa());
 			dto.setGia(sp.getGia());
-			dto.setSoLuong(sp.getSoLuong());
 			dto.setTenAnh(sp.getAnhMoTa());
 			
 			productDTOs.add(dto);
 		});
 		return productDTOs;
+	}
+	
+	@Override
+	public List<ProductDetailDTO> getAllProductDetailByMaSP(String maSP) throws Exception {
+		SanPham sp = productDAO.getProuctByMaSp(maSP);
+		List<ChiTietSanPham> ctsps = productDAO.getAllProductDetailByMaSP(maSP);
+		if(sp != null) {
+			List<ProductDetailDTO> proDetails = new ArrayList<ProductDetailDTO>();
+			for(ChiTietSanPham ctsp:ctsps) {
+				SanPham sanPham = ctsp.getSanPham();
+				ProductDTO dto = new ProductDTO();
+				dto.setMaSp(sanPham.getMaSP());
+				dto.setTenSp(sanPham.getTenSP());
+				dto.setMoTa(sanPham.getMoTa());
+				dto.setGia(sanPham.getGia());
+				dto.setTenAnh(sanPham.getAnhMoTa());
+				
+				MauSac mauSac = ctsp.getMauSac();
+				ColorDTO colorDTO = new ColorDTO();
+				colorDTO.setId(mauSac.getMaMau());
+				colorDTO.setColor(mauSac.getTenMau());
+				
+				SizeSanPham sizeSP = ctsp.getSizeSanPham();
+				SizeDTO sizeDTO = new SizeDTO();
+				sizeDTO.setId(sizeSP.getMaSize());
+				sizeDTO.setSize(sizeSP.getSize());
+				
+				ProductDetailDTO productDetailDTO = new ProductDetailDTO();
+				productDetailDTO.setIdProductDetail(ctsp.getIdChiTiet());
+				productDetailDTO.setProductDTO(dto);
+				productDetailDTO.setColor(colorDTO);
+				productDetailDTO.setSize(sizeDTO);
+				productDetailDTO.setAmount(ctsp.getSoLuong());
+				
+				proDetails.add(productDetailDTO);
+			};
+			
+			return proDetails;
+		}
+		return null;
 	}
 }

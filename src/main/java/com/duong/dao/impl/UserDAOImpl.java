@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.UserDAO;
-import com.duong.entity.Nguoidung;
+import com.duong.entity.NguoiDung;
 
 @Repository
 //@Transactional
@@ -22,14 +22,14 @@ public class UserDAOImpl implements UserDAO{
 	SessionFactory sessionFactory;
 	
 	@Override
-	public void insertUser(Nguoidung nguoidung) throws SQLException {
+	public void insertUser(NguoiDung nguoidung) throws SQLException {
 		Session session = sessionFactory.openSession();
 		session.save(nguoidung);
 		session.close();
 	}
 
 	@Override
-	public void updateUser(Nguoidung nguoidung) throws SQLException {
+	public void updateUser(NguoiDung nguoidung) throws SQLException {
 		Session session = sessionFactory.openSession();
 		session.update(nguoidung);
 		session.flush();
@@ -39,38 +39,38 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void deleteUserById(int id) throws SQLException {
 		Session session = sessionFactory.openSession();
-		Nguoidung nguoidung = (Nguoidung) session.get(Nguoidung.class, id);
+		NguoiDung nguoidung = (NguoiDung) session.get(NguoiDung.class, id);
 		session.delete(nguoidung);
 		session.flush();
 		session.close();
 	}
 
 	@Override
-	public Nguoidung getUserById(int id) throws SQLException {
+	public NguoiDung getUserById(int id) throws SQLException {
 		Session session = sessionFactory.openSession();
-		Nguoidung nguoidung = (Nguoidung) session.get(Nguoidung.class, id);
+		NguoiDung nguoidung = (NguoiDung) session.get(NguoiDung.class, id);
 		session.close();
 		return nguoidung;
 	}
 
 	@Override
-	public List<Nguoidung> getAllUser() throws SQLException {
+	public List<NguoiDung> getAllUser() throws SQLException {
 		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Nguoidung.class);
+		Criteria criteria = session.createCriteria(NguoiDung.class);
 		return criteria.list();
 	}
 	
 	@Override
-	public Nguoidung getSignInByMaNguoiDung(String usename, String password) throws SQLException{
+	public NguoiDung getSignInByMaNguoiDung(String usename, String password) throws SQLException{
 		Session session = sessionFactory.openSession();
 		String hql = "from Nguoidung where maNguoiDung = :username AND matKhau = :password";
 		Query query = session.createQuery(hql);
 		query.setParameter("username",usename);
 		query.setParameter("password",password);
 		Object object = query.uniqueResult();
-		Nguoidung nguoidung = null;
+		NguoiDung nguoidung = null;
 		if(object != null) {
-			nguoidung = (Nguoidung) object;
+			nguoidung = (NguoiDung) object;
 		}
 		return nguoidung;
 	}

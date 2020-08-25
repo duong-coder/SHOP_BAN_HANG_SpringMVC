@@ -15,7 +15,6 @@
 	TEN SP:  ${productDTO.tenSp } <br/>
 	MO TA: ${productDTO.moTa } <br/>
 	GIA: ${productDTO.gia } <br/>
-	SO LUONG: ${productDTO.soLuong } <br/>
 	HINH: <img src="<c:url value='/imageProducts/${productDTO.tenAnh }' />" >
 	<%-- <img alt="" src="">
 	Image: <img src="<c:url value='/static/ImageProducts/${productDTO.imageUrl }' />" > --%>

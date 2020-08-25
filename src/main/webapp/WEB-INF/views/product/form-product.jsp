@@ -29,10 +29,7 @@
 		GIA <br/>
 		<form:input path="gia"/> <br/>
 		<p style="color:red;"><form:errors path="gia" /> </p>
-		
-		SO LUONG <br/>
-		<form:input path="soLuong"/> <br/>
-		
+
 		Hinh anh <br/>
 		<input type="file" name="file" />
 		<br/>

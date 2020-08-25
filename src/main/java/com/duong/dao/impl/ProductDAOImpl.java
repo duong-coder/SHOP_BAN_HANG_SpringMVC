@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.duong.dao.ProductDAO;
-import com.duong.entity.Sanpham;
+import com.duong.entity.ChiTietSanPham;
+import com.duong.entity.SanPham;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO{
@@ -18,7 +19,7 @@ public class ProductDAOImpl implements ProductDAO{
 	@Autowired
 	SessionFactory sessionFactory;
 	@Override
-	public void insertProduct(Sanpham sp) throws Exception {
+	public void insertProduct(SanPham sp) throws Exception {
 		Session session = sessionFactory.openSession();
 		session.save(sp);
 		session.flush();
@@ -26,7 +27,7 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public void updateProduct(Sanpham sp) throws Exception {
+	public void updateProduct(SanPham sp) throws Exception {
 		Session session = sessionFactory.openSession();
 		session.update(sp);
 		session.flush();
@@ -36,36 +37,53 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public void deleteProductByMaSp(String maSp) throws Exception {
 		Session session = sessionFactory.openSession();
-		Sanpham sp = getProuctByMaSp(maSp);
+		SanPham sp = getProuctByMaSp(maSp);
 		session.delete(sp);
 		session.flush();
 		session.close();
 	}
 
 	@Override
-	public Sanpham getProuctByMaSp(String maSp) throws Exception {
+	public SanPham getProuctByMaSp(String maSp) throws Exception {
 		Session session = sessionFactory.openSession();
-		Sanpham sp = (Sanpham) session.get(Sanpham.class, maSp);
+		SanPham sp = (SanPham) session.get(SanPham.class, maSp);
 		session.close();
 		return sp;
 	}
 
 	@Override
-	public List<Sanpham> getAllProduct() throws Exception {
+	public List<SanPham> getAllProduct() throws Exception {
 		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Sanpham.class);
+		Criteria criteria = session.createCriteria(SanPham.class);
 		return criteria.list();
 	}
 	
 	@Override
-	public List<Sanpham> getTopProduct(int soLuong) throws Exception {
+	public List<SanPham> getTopProduct(int soLuong) throws Exception {
 		Session session = sessionFactory.openSession();
-		String hql = "from Sanpham";
+		String hql = "from SanPham";
 		Query query = session.createQuery(hql);
 		query.setMaxResults(soLuong);
 //		Criteria criteria = session.createCriteria("FROM Sanpham LIMIT " + soLuong);
-		List<Sanpham> sanphams = query.list();
+		List<SanPham> sanphams = query.list();
 		session.close();
 		return sanphams;
+	}
+	
+	@Override
+	public List<ChiTietSanPham> getAllProductDetailByMaSP(String maSP) throws Exception {
+		Session session = sessionFactory.openSession();
+		SanPham sanPham = (SanPham) session.get(SanPham.class, maSP);
+		if(sanPham != null) {
+			List<ChiTietSanPham> ctsps = sanPham.getChiTietSanPhams();
+			for(ChiTietSanPham ctsp:ctsps) {
+				System.out.println(ctsp.getIdChiTiet() + "///" + ctsp.getMauSac().getTenMau()
+						+  "///" + ctsp.getSanPham().getTenSP() + "///" + + ctsp.getSoLuong());
+			}
+			session.close();
+			return ctsps;
+		}
+		
+		return null;
 	}
 }

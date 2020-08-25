@@ -7,7 +7,6 @@ public class ProductDTO {
 	private String tenSp;
 	private String moTa;
 	private double gia;
-	private int soLuong;
 	private String tenAnh;
 	private MultipartFile file;
 	
@@ -45,14 +44,6 @@ public class ProductDTO {
 
 	public void setGia(double gia) {
 		this.gia = gia;
-	}
-
-	public int getSoLuong() {
-		return soLuong;
-	}
-
-	public void setSoLuong(int soLuong) {
-		this.soLuong = soLuong;
 	}
 
 	public String getTenAnh() {

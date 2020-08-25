@@ -2,18 +2,21 @@ package com.duong.dao;
 
 import java.util.List;
 
-import com.duong.entity.Sanpham;
+import com.duong.entity.ChiTietSanPham;
+import com.duong.entity.SanPham;
 
 public interface ProductDAO {
-	void insertProduct(Sanpham sp) throws Exception;
+	void insertProduct(SanPham sp) throws Exception;
 	
-	void updateProduct(Sanpham sp) throws Exception;
+	void updateProduct(SanPham sp) throws Exception;
 	
 	void deleteProductByMaSp(String maSp ) throws Exception;
 	
-	Sanpham getProuctByMaSp(String maSp ) throws Exception;
+	SanPham getProuctByMaSp(String maSp ) throws Exception;
 	
-	List<Sanpham> getAllProduct() throws Exception;
+	List<SanPham> getAllProduct() throws Exception;
 	
-	List<Sanpham> getTopProduct(int soLuong) throws Exception;
+	List<SanPham> getTopProduct(int soLuong) throws Exception;
+	
+	List<ChiTietSanPham> getAllProductDetailByMaSP(String maSP) throws Exception;
 }

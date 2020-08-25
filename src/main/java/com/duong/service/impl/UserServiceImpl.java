@@ -4,13 +4,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.UserDAO;
-import com.duong.entity.Nguoidung;
+import com.duong.entity.NguoiDung;
 import com.duong.model.UserDTO;
 import com.duong.service.UserService;
 
@@ -23,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void insertUser(UserDTO userDTO) throws SQLException {
-		Nguoidung nd = new Nguoidung();
+		NguoiDung nd = new NguoiDung();
 		nd.setId(userDTO.getID());
 		nd.setMaNguoiDung(userDTO.getUsername());
 		nd.setMatKhau(userDTO.getPass());
@@ -39,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void updateUser(UserDTO userDTO) throws SQLException {
-		Nguoidung nd = new Nguoidung();
+		NguoiDung nd = new NguoiDung();
 		nd.setId(userDTO.getID());
 		nd.setMaNguoiDung(userDTO.getUsername());
 		nd.setMatKhau(userDTO.getPass());
@@ -64,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO getUserById(int id) throws SQLException {
-		Nguoidung nd = userDAO.getUserById(id);
+		NguoiDung nd = userDAO.getUserById(id);
 		UserDTO dto = new UserDTO();
 		dto.setID(nd.getId());
 		dto.setUsername(nd.getMaNguoiDung());
@@ -81,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDTO> getAllUser() throws SQLException {
-		List<Nguoidung> nds = userDAO.getAllUser();
+		List<NguoiDung> nds = userDAO.getAllUser();
 		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
 		nds.forEach((nd) -> {
 			UserDTO dto = new UserDTO();
@@ -102,7 +100,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO getSignInByMaNguoiDung(String username, String password) throws SQLException {
-		Nguoidung nd = userDAO.getSignInByMaNguoiDung(username, password);
+		NguoiDung nd = userDAO.getSignInByMaNguoiDung(username, password);
 		if (nd == null) {
 			return null;
 		}
