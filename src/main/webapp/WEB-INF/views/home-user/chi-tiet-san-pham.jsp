@@ -39,14 +39,14 @@
                     		<li style="border: solid 1px black;">
 							    <c:choose>
 							         <c:when test = "${i.index == 0}">
-							            <input type="radio"  checked="checked" id="${colorDTO.color}${i.index }" name="color"/>
+							            <input type="radio" value="${colorDTO.id }" checked="checked" id="color${i.index }" name="color"/>
 							         </c:when>
 
 							         <c:otherwise>
-							            <input type="radio" id="${colorDTO.color}${i.index }" name="color"/>
+							            <input type="radio" value="${colorDTO.id }" id="color${i.index }" name="color"/>
 							         </c:otherwise>
 							      </c:choose>
-                    			<label for="${colorDTO.color}${i.index }" >${colorDTO.color}</label>
+                    			<label for="color${i.index }" >${colorDTO.color}</label>
                     		</li>
                     	</c:forEach>
                     </ul>
@@ -58,14 +58,14 @@
                     		<li style="border: solid 1px black;">
                     			<c:choose>
 							         <c:when test = "${i.index == 0}">
-							            <input type="radio" checked="checked" id="${sizeDTO.size}${i.index }" name="size"/>
+							            <input type="radio" value="${sizeDTO.id }" checked="checked" id="size${i.index }${i.index }" name="size"/>
 							         </c:when>
 
 							         <c:otherwise>
-							            <input type="radio" id="${sizeDTO.size}${i.index }" name="size"/>
+							            <input type="radio" value="${sizeDTO.id }" id="size${i.index }" name="size"/>
 							         </c:otherwise>
 							      </c:choose>
-                    			<label for="${sizeDTO.size}${i.index }" >${sizeDTO.size}</label>
+                    			<label for="size${i.index }" >${sizeDTO.size}</label>
                     		</li>
                     	</c:forEach>
                     </ul>
@@ -73,7 +73,7 @@
                 <div class="amount-product">
                     <label for="quantity">Số lượng</label>
                     <input id="quantity" type="number" min="1" value="1" 
-                    	max="10"> <br>
+                    	max="2"> <br>
                 </div>
                	<p>Số lượng trong kho: <span id="amountProductInStock"></span> </p>
                 <div class="add-to-cart text-center ">

@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 
-import com.duong.model.ProductDTO;
 import com.duong.model.ProductDetailDTO;
 
 public interface ProductDetailService {
 	
 	void insertProductDetail(ProductDetailDTO pDetailDTO) throws HibernateException;
+	
+	void insertProductDetail(String maSP, int maMau, int maSize, int soLuong) throws HibernateException;
 	
 	void updateProductDetail(ProductDetailDTO pDetailDTO) throws HibernateException;
 	

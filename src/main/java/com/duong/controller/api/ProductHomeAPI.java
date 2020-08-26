@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.duong.service.ProductDetailService;
 
@@ -15,11 +16,12 @@ public class ProductHomeAPI {
 	private ProductDetailService productDetailService;
 	
 	@RequestMapping( value ="/amount-product-detail", method = RequestMethod.GET)
-	public int getAmountProductDetail(@RequestParam("maSP") String maSP,
+	@ResponseBody
+	public String getAmountProductDetail(@RequestParam("maSP") String maSP,
 			@RequestParam("maMau") int maMau,
 			@RequestParam("maSize") int maSize) {
 		int kq = productDetailService.getAmountProductDetail(maSP, maMau, maSize);
 		System.out.println("so luong" + kq);
-		return 1;
+		return kq + "";
 	}
 }

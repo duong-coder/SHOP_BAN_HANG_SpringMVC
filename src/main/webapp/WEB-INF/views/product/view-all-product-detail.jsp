@@ -14,16 +14,19 @@
 	<a href="<c:url value = '/admin/add-product' /> ">Them san pham</a>
 		<table>
 		<tr>
+			<th>MA CHI TIET</th>
 			<th>MA SP</th>
 			<th>TEN SP</th>
-			<th>GIA</th>
-			<th>LUA CHON</th>
+			<th>MAU SAC</th>
+			<th>KICH CO</th>
+			<th>SO LUONG</th>
 		</tr>
 		<c:forEach items="${productDTOs }" var="productDTO">
 			<tr>
 				<td>${productDTO.maSp }</td>
 				<td>${productDTO.tenSp }</td>
 				<td>${productDTO.gia }</td>
+				<td>${productDTO.soLuong }</td>
 				<td>
 					<a href="<c:url value='/admin/product-detail/${productDTO.maSp}'/>">Chi tiet</a>
 					<a href="<c:url value='/admin/edit-product/${productDTO.maSp}'/>">Sua</a>

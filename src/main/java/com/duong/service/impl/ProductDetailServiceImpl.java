@@ -19,56 +19,83 @@ import com.duong.model.SizeDTO;
 import com.duong.service.ProductDetailService;
 
 @Service
-public class ProductDetailServiceImpl implements ProductDetailService{
-	
+public class ProductDetailServiceImpl implements ProductDetailService {
+
 	@Autowired
 	private ProductDetailDAO productDetailDAO;
-	
+
 	@Override
 	public void insertProductDetail(ProductDetailDTO pDetailDTO) throws HibernateException {
 		ProductDTO proDTO = pDetailDTO.getProductDTO();
 		SanPham sp = new SanPham();
 		sp.setMaSP(proDTO.getMaSp());
-		sp.setTenSP(proDTO.getTenSp());
-		sp.setMoTa(proDTO.getMoTa());
-		sp.setGia(proDTO.getGia());
-		sp.setAnhMoTa(proDTO.getTenAnh());
-		
+//		sp.setTenSP(proDTO.getTenSp());
+//		sp.setMoTa(proDTO.getMoTa());
+//		sp.setGia(proDTO.getGia());
+//		sp.setAnhMoTa(proDTO.getTenAnh());
+
 		ColorDTO colorDTO = pDetailDTO.getColor();
 		MauSac mauSac = new MauSac();
 		mauSac.setMaMau(colorDTO.getId());
-		mauSac.setTenMau(colorDTO.getColor());
-		
+//		mauSac.setTenMau(colorDTO.getColor());
+
 		SizeDTO sizeDTO = pDetailDTO.getSize();
 		SizeSanPham sizeSanPham = new SizeSanPham();
 		sizeSanPham.setMaSize(sizeDTO.getId());
-		sizeSanPham.setSize(sizeDTO.getSize());
-		
+//		sizeSanPham.setSize(sizeDTO.getSize());
+
 		ChiTietSanPham ctsp = new ChiTietSanPham();
 		ctsp.setSanPham(sp);
 		ctsp.setMauSac(mauSac);
 		ctsp.setSizeSanPham(sizeSanPham);
 		ctsp.setSoLuong(pDetailDTO.getAmount());
-		
+
 		productDetailDAO.insertProductDetail(ctsp);
+	}
+
+	@Override
+	public void insertProductDetail(String maSP, int maMau, int maSize, int soLuong) throws HibernateException {
+		SanPham sp = new SanPham();
+		sp.setMaSP(maSP);
+//		sp.setTenSP(proDTO.getTenSp());
+//		sp.setMoTa(proDTO.getMoTa());
+//		sp.setGia(proDTO.getGia());
+//		sp.setAnhMoTa(proDTO.getTenAnh());
+
+		MauSac mauSac = new MauSac();
+		mauSac.setMaMau(maMau);
+//		mauSac.setTenMau(colorDTO.getColor());
+
+		SizeSanPham sizeSanPham = new SizeSanPham();
+		sizeSanPham.setMaSize(maSize);
+//		sizeSanPham.setSize(sizeDTO.getSize());
+
+		ChiTietSanPham ctsp = new ChiTietSanPham();
+		ctsp.setSanPham(sp);
+		ctsp.setMauSac(mauSac);
+		ctsp.setSizeSanPham(sizeSanPham);
+		ctsp.setSoLuong(soLuong);
+
+		productDetailDAO.insertProductDetail(ctsp);
+
 	}
 
 	@Override
 	public void updateProductDetail(ProductDetailDTO pDetailDTO) throws HibernateException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteProductDetail(int id) throws HibernateException {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
 	public ProductDetailDTO getProductDetailByIdCT(int id) throws HibernateException {
 		ChiTietSanPham ctsp = productDetailDAO.getProductDetailByIdCT(id);
-		
+
 		SanPham sp = ctsp.getSanPham();
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setMaSp(sp.getMaSP());
@@ -76,40 +103,40 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		productDTO.setMoTa(sp.getMoTa());
 		productDTO.setGia(sp.getGia());
 		productDTO.setTenAnh(sp.getAnhMoTa());
-		
+
 		MauSac mauSac = ctsp.getMauSac();
 		ColorDTO colorDTO = new ColorDTO();
 		colorDTO.setId(mauSac.getMaMau());
 		colorDTO.setColor(mauSac.getTenMau());
-		
+
 		SizeSanPham sizeSP = ctsp.getSizeSanPham();
 		SizeDTO sizeDTO = new SizeDTO();
 		sizeDTO.setId(sizeSP.getMaSize());
 		sizeDTO.setSize(sizeSP.getSize());
-		
+
 		SanPham sanPham = new SanPham();
 		sanPham.setMaSP(productDTO.getMaSp());
 		sanPham.setTenSP(productDTO.getTenSp());
 		sanPham.setMoTa(productDTO.getMoTa());
 		sanPham.setGia(productDTO.getGia());
 		sanPham.setAnhMoTa(productDTO.getTenAnh());
-		
+
 		ProductDetailDTO productDetailDTO = new ProductDetailDTO();
 		productDetailDTO.setIdProductDetail(ctsp.getIdChiTiet());
 		productDetailDTO.setProductDTO(productDTO);
 		productDetailDTO.setColor(colorDTO);
 		productDetailDTO.setSize(sizeDTO);
 		productDetailDTO.setAmount(ctsp.getSoLuong());
-		
+
 		return productDetailDTO;
 	}
-	
+
 	@Override
 	public int getAmountProductDetail(String maSP, int maMau, int maSize) throws HibernateException {
 		int amount = productDetailDAO.getAmountProductDetail(maSP, maMau, maSize);
 		return amount;
 	}
-	
+
 	@Override
 	public List<ProductDetailDTO> getAllProductDetail() throws HibernateException {
 		/*
@@ -135,5 +162,5 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		 */
 		return null;
 	}
-	
+
 }
