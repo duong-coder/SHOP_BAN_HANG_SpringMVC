@@ -62,7 +62,7 @@ public class ProductController {
 		return "redirect:/admin/all-product";
 	}
 
-	@RequestMapping(value = "/product-detail/{maSp}", method = RequestMethod.GET)
+	@RequestMapping(value = "/infor-product/{maSp}", method = RequestMethod.GET)
 	public String showDetailProduct(HttpServletRequest request, @PathVariable(value = "maSp") String maSp) {
 		ProductDTO productDTO = null;
 		try {

@@ -25,7 +25,8 @@
 				<td>${productDTO.tenSp }</td>
 				<td>${productDTO.gia }</td>
 				<td>
-					<a href="<c:url value='/admin/product-detail/${productDTO.maSp}'/>">Chi tiet</a>
+					<a href="<c:url value='/admin/infor-product/${productDTO.maSp}'/>">Chi tiet thong tin</a>
+					<a href="<c:url value='/admin/all-product-detail/${productDTO.maSp}'/>">Chi tiet san pham </a>
 					<a href="<c:url value='/admin/edit-product/${productDTO.maSp}'/>">Sua</a>
 					<a href="<c:url value='/admin/delete-product/${productDTO.maSp}'/>">Xoa</a>
 				</td>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +34,18 @@ public class ProductDetailController {
 	@Autowired
 	private ColorService colorService;
 	
-	@RequestMapping(value = "/all-product-detail", method =  RequestMethod.GET)
-	public String getAllProductDetail(HttpServletRequest request) {
+	@RequestMapping(value = "/all-product-detail/{maSP}", method =  RequestMethod.GET)
+	public String getAllProductDetail(HttpServletRequest request,
+			@PathVariable("maSP") String maSP) {
+		List<ProductDetailDTO> proDetails = new ArrayList<ProductDetailDTO>();
+		try {
+			proDetails = productService.getAllProductDetailByMaSP(maSP);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("productDetails", proDetails);
 		
 		return "product/view-all-product-detail";
 	}
