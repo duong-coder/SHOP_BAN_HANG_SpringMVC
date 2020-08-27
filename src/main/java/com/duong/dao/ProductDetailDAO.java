@@ -11,11 +11,13 @@ public interface ProductDetailDAO {
 	
 	void insertProductDetail(ChiTietSanPham ctsp) throws HibernateException;
 	
-	void updateProductDetail(ChiTietSanPham ctsp) throws HibernateException;
+	void updateProductDetail(ChiTietSanPham ctspOld, ChiTietSanPham ctspNew) throws HibernateException;
 	
-	void deleteProductDetail(int idctsp) throws HibernateException;
+	void deleteProductDetail(String maSP, int maMau, int maSize) throws HibernateException;
 	
-	ChiTietSanPham getProductDetailByIdCT(int id) throws HibernateException;
+	ChiTietSanPham getProductDetail(String maSP, int maMau, int maSize) throws HibernateException;
+	
+	ChiTietSanPham getProductDetail(ChiTietSanPham ctsp) throws HibernateException;
 	
 	int getAmountProductDetail(String maSP, int maMau, int maSize) throws HibernateException;
 	

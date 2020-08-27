@@ -32,16 +32,40 @@ public class ProductDetailDAOImpl implements ProductDetailDAO{
 	}
 
 	@Override
-	public void updateProductDetail(ChiTietSanPham ctsp) throws HibernateException {
+	public void updateProductDetail(ChiTietSanPham ctspOld, ChiTietSanPham ctspNew) throws HibernateException {
+		System.out.println("New: " + ctspNew.getMauSac().getMaMau()
+				+ "// " + ctspNew.getSizeSanPham().getMaSize()
+				+ "//" + ctspNew.getSoLuong());
+		System.out.println("Old: " + ctspNew.getMauSac().getMaMau()
+				+ "// " + ctspNew.getSizeSanPham().getMaSize()
+				+ "//" + ctspOld.getSanPham().getMaSP());
+		
 		Session session = sessionFactory.openSession();
-		session.update(ctsp);
+		String hql = "update ChiTietSanPham as C"
+				+ " set C.mauSac = :mausacN,"
+				+ " C.sizeSP = :sizespN,"
+				+ " C.soLuong = :soLuongN"
+				+ " where"
+				+ " C.sanPham = :sanphamO and"
+				+ " C.mauSac = :mausacO and"
+				+ " C.sizeSP =:sizespO";
+		Query query = session.createQuery(hql);
+		query.setParameter("mausacN", ctspNew.getMauSac());
+		query.setParameter("sizespN", ctspNew.getSizeSanPham());
+		query.setParameter("soLuongN", ctspNew.getSoLuong());
+
+		query.setParameter("sanphamO", ctspOld.getSanPham());
+		query.setParameter("mausacO", ctspOld.getMauSac());
+		query.setParameter("sizespO", ctspOld.getSizeSanPham());
+
+		query.executeUpdate();
 		session.flush();
 		session.close();
 	}
 
 	@Override
-	public void deleteProductDetail(int idctsp) throws HibernateException {
-		ChiTietSanPham ctsp = getProductDetailByIdCT(idctsp);
+	public void deleteProductDetail(String maSP, int maMau, int maSize) throws HibernateException {
+		ChiTietSanPham ctsp = getProductDetail(maSP, maMau, maSize);
 		Session session = sessionFactory.openSession();
 		session.delete(ctsp);
 		session.flush();
@@ -49,12 +73,36 @@ public class ProductDetailDAOImpl implements ProductDetailDAO{
 	}
 	
 	@Override
-	public ChiTietSanPham getProductDetailByIdCT(int id) throws HibernateException {
+	public ChiTietSanPham getProductDetail(String maSP, int maMau, int maSize) throws HibernateException {
 		Session session = sessionFactory.openSession();
-		ChiTietSanPham ctsp = (ChiTietSanPham) session.get(ChiTietSanPham.class, id);
-		session.close();
+		SanPham sp = new SanPham();
+		sp.setMaSP(maSP);
+		MauSac mauSac = new MauSac();
+		mauSac.setMaMau(maMau);
+		SizeSanPham sizeSanPham = new SizeSanPham();
+		sizeSanPham.setMaSize(maSize);
+		
+		String hql = "from ChiTietSanPham as C where C.sanPham = :sanpham and C.mauSac = :mausac and C.sizeSP =:sizesp";
+		Query query = session.createQuery(hql);
+		query.setParameter("sanpham", sp);
+		query.setParameter("mausac", mauSac);
+		query.setParameter("sizesp", sizeSanPham);
+		ChiTietSanPham ctsp = (ChiTietSanPham) query.uniqueResult();
 		
 		return ctsp;
+	}
+	
+	@Override
+	public ChiTietSanPham getProductDetail(ChiTietSanPham ctsp) throws HibernateException {
+		Session session = sessionFactory.openSession();
+		String hql = "from ChiTietSanPham as C where C.sanPham = :sanpham and C.mauSac = :mausac and C.sizeSP =:sizesp";
+		Query query = session.createQuery(hql);
+		query.setParameter("sanpham", ctsp.getSanPham());
+		query.setParameter("mausac", ctsp.getMauSac());
+		query.setParameter("sizesp", ctsp.getSizeSanPham());
+		ChiTietSanPham ctspQuery = (ChiTietSanPham) query.uniqueResult();
+		
+		return ctspQuery;
 	}
 	
 	@Override
