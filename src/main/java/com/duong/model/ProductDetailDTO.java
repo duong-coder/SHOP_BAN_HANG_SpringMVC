@@ -3,7 +3,7 @@ package com.duong.model;
 import java.util.List;
 
 public class ProductDetailDTO {
-	private int idProductDetail;
+//	private int idProductDetail;
 	private ProductDTO productDTO;
 	private ColorDTO color;
 //	private List<ColorDTO> colors;
@@ -13,12 +13,12 @@ public class ProductDetailDTO {
 //	private List<Integer> amounts;
 	
 	
-	public int getIdProductDetail() {
-		return idProductDetail;
-	}
-	public void setIdProductDetail(int idProductDetail) {
-		this.idProductDetail = idProductDetail;
-	}
+//	public int getIdProductDetail() {
+//		return idProductDetail;
+//	}
+//	public void setIdProductDetail(int idProductDetail) {
+//		this.idProductDetail = idProductDetail;
+//	}
 	public ProductDTO getProductDTO() {
 		return productDTO;
 	}

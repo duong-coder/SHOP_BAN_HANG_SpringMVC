@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.ProductDetailDAO;
 import com.duong.entity.ChiTietSanPham;
@@ -17,6 +18,7 @@ import com.duong.entity.SanPham;
 import com.duong.entity.SizeSanPham;
 
 @Repository
+@Transactional
 public class ProductDetailDAOImpl implements ProductDetailDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -25,6 +27,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO{
 	public void insertProductDetail(ChiTietSanPham ctsp) throws HibernateException {
 		Session session = sessionFactory.openSession();
 		session.save(ctsp);
+		session.flush();
 		session.close();
 	}
 

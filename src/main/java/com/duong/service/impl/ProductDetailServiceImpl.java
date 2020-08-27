@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.ProductDetailDAO;
 import com.duong.entity.ChiTietSanPham;
@@ -19,13 +20,14 @@ import com.duong.model.SizeDTO;
 import com.duong.service.ProductDetailService;
 
 @Service
+@Transactional
 public class ProductDetailServiceImpl implements ProductDetailService {
 
 	@Autowired
 	private ProductDetailDAO productDetailDAO;
 
 	@Override
-	public void insertProductDetail(ProductDetailDTO pDetailDTO) throws HibernateException {
+	public void insertProductDetail(ProductDetailDTO pDetailDTO) throws Exception {
 		ProductDTO proDTO = pDetailDTO.getProductDTO();
 		SanPham sp = new SanPham();
 		sp.setMaSP(proDTO.getMaSp());
@@ -54,7 +56,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	public void insertProductDetail(String maSP, int maMau, int maSize, int soLuong) throws HibernateException {
+	public void insertProductDetail(String maSP, int maMau, int maSize, int soLuong) throws Exception {
 		SanPham sp = new SanPham();
 		sp.setMaSP(maSP);
 //		sp.setTenSP(proDTO.getTenSp());
@@ -81,7 +83,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	public void updateProductDetail(ProductDetailDTO pDetailDTO) throws HibernateException {
+	public void updateProductDetail(ProductDetailDTO pDetailDTO) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
@@ -93,7 +95,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	public ProductDetailDTO getProductDetailByIdCT(int id) throws HibernateException {
+	public ProductDetailDTO getProductDetailByIdCT(int id) throws Exception {
 		ChiTietSanPham ctsp = productDetailDAO.getProductDetailByIdCT(id);
 
 		SanPham sp = ctsp.getSanPham();
@@ -122,7 +124,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		sanPham.setAnhMoTa(productDTO.getTenAnh());
 
 		ProductDetailDTO productDetailDTO = new ProductDetailDTO();
-		productDetailDTO.setIdProductDetail(ctsp.getIdChiTiet());
+//		productDetailDTO.setIdProductDetail(ctsp.getIdChiTiet());
 		productDetailDTO.setProductDTO(productDTO);
 		productDetailDTO.setColor(colorDTO);
 		productDetailDTO.setSize(sizeDTO);
@@ -132,13 +134,13 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	public int getAmountProductDetail(String maSP, int maMau, int maSize) throws HibernateException {
+	public int getAmountProductDetail(String maSP, int maMau, int maSize) throws Exception {
 		int amount = productDetailDAO.getAmountProductDetail(maSP, maMau, maSize);
 		return amount;
 	}
 
 	@Override
-	public List<ProductDetailDTO> getAllProductDetail() throws HibernateException {
+	public List<ProductDetailDTO> getAllProductDetail() throws Exception {
 		/*
 		 * ProductDetailDTO productDetailDTO = new ProductDetailDTO(); List<ColorDTO>
 		 * colorDTOs = new ArrayList<ColorDTO>(); List<SizeDTO> sizeDTOs = new

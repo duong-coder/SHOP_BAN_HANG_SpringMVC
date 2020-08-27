@@ -20,7 +20,13 @@ public class ProductHomeAPI {
 	public String getAmountProductDetail(@RequestParam("maSP") String maSP,
 			@RequestParam("maMau") int maMau,
 			@RequestParam("maSize") int maSize) {
-		int kq = productDetailService.getAmountProductDetail(maSP, maMau, maSize);
+		int kq = -1;
+		try {
+			kq = productDetailService.getAmountProductDetail(maSP, maMau, maSize);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("so luong" + kq);
 		return kq + "";
 	}

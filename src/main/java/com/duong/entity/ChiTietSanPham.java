@@ -13,16 +13,18 @@ import javax.persistence.*;
 public class ChiTietSanPham implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idChiTiet;
+//	@Id
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	private int idChiTiet;
 	
 //	@Column(name = "MaMau")
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "MaMau")
 	private MauSac mauSac;
 	
 //	@Column(name = "MaSize")
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "MaSize")
 	private SizeSanPham sizeSP;
@@ -31,6 +33,7 @@ public class ChiTietSanPham implements Serializable {
 	private int soLuong;
 	
 //	@Column(name = "MaSP")
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "MaSP")
 	private SanPham sanPham;
@@ -38,13 +41,13 @@ public class ChiTietSanPham implements Serializable {
 	public ChiTietSanPham() {
 	}
 
-	public int getIdChiTiet() {
-		return this.idChiTiet;
-	}
-
-	public void setIdChiTiet(int idChiTiet) {
-		this.idChiTiet = idChiTiet;
-	}
+//	public int getIdChiTiet() {
+//		return this.idChiTiet;
+//	}
+//
+//	public void setIdChiTiet(int idChiTiet) {
+//		this.idChiTiet = idChiTiet;
+//	}
 
 	public MauSac getMauSac() {
 		return this.mauSac;

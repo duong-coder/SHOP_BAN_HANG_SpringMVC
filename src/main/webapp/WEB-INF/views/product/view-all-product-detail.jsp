@@ -15,21 +15,19 @@
 	<a href="<c:url value = '/admin/add-product-detail' /> ">Them chi tiet san pham</a>
 		<table>
 		<tr>
-			<th>MA CHI TIET</th>
-			<th>MAU SAC</th>
 			<th>KICH CO</th>
+			<th>MAU SAC</th>
 			<th>SO LUONG</th>
 			<th>LUA CHON</th>
 		</tr>
 		<c:forEach items="${productDetails }" var="productDetail">
 			<tr>
-				<td>${productDetail.idProductDetail }</td>
-				<td>${productDetail.getColor().color }</td>
 				<td>${productDetail.getSize().size }</td>
+				<td>${productDetail.getColor().color }</td>
 				<td>${productDetail.amount }</td>
 				<td>
-					<a href="<c:url value='/admin/edit-product-detail/${productDetail.idProductDetail }'/>">Sua</a>
-					<a href="<c:url value='/admin/delete-product-detail/${productDetail.idProductDetail }'/>">Xoa</a>
+					<a href="<c:url value='/admin/edit-product-detail/'/>">Sua</a>
+					<a href="<c:url value='/admin/delete-product-detail/'/>">Xoa</a>
 				</td>
 			</tr>
 				

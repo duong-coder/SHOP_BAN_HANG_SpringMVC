@@ -76,9 +76,14 @@ public class ProductDetailController {
 			@RequestParam("colorID") int maMau,
 			@RequestParam("sizeID") int maSize,
 			@RequestParam("amount") int soLuong) {
-		
-		detailService.insertProductDetail(maSP, maMau, maSize, soLuong);
-		
-		return "redirect:/admin/all-product";
+		System.out.println(maMau +"//" + maSize);
+			try {
+				detailService.insertProductDetail(maSP, maMau, maSize, soLuong);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		return "redirect:/admin/all-product-detail/" + maSP;
 	}
 }

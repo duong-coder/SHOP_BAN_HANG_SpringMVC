@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.ProductDAO;
 import com.duong.entity.ChiTietSanPham;
@@ -18,6 +19,7 @@ import com.duong.model.SizeDTO;
 import com.duong.service.ProductService;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
@@ -132,7 +134,7 @@ public class ProductServiceImpl implements ProductService{
 				sizeDTO.setSize(sizeSP.getSize());
 				
 				ProductDetailDTO productDetailDTO = new ProductDetailDTO();
-				productDetailDTO.setIdProductDetail(ctsp.getIdChiTiet());
+//				productDetailDTO.setIdProductDetail(ctsp.getIdChiTiet());
 				productDetailDTO.setProductDTO(dto);
 				productDetailDTO.setColor(colorDTO);
 				productDetailDTO.setSize(sizeDTO);

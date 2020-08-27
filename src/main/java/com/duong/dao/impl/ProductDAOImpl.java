@@ -8,12 +8,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.ProductDAO;
 import com.duong.entity.ChiTietSanPham;
 import com.duong.entity.SanPham;
 
 @Repository
+@Transactional
 public class ProductDAOImpl implements ProductDAO{
 	
 	@Autowired
@@ -77,7 +79,7 @@ public class ProductDAOImpl implements ProductDAO{
 		if(sanPham != null) {
 			List<ChiTietSanPham> ctsps = sanPham.getChiTietSanPhams();
 			for(ChiTietSanPham ctsp:ctsps) {
-				System.out.println(ctsp.getIdChiTiet() + "///" + ctsp.getMauSac().getTenMau()
+				System.out.println(/* ctsp.getIdChiTiet() + "///" + */ ctsp.getMauSac().getTenMau()
 						+  "///" + ctsp.getSanPham().getTenSP() + "///" + + ctsp.getSoLuong());
 			}
 			session.close();

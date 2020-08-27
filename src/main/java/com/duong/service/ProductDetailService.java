@@ -2,25 +2,23 @@ package com.duong.service;
 
 import java.util.List;
 
-import org.hibernate.HibernateException;
-
 import com.duong.model.ProductDetailDTO;
 
 public interface ProductDetailService {
 	
-	void insertProductDetail(ProductDetailDTO pDetailDTO) throws HibernateException;
+	void insertProductDetail(ProductDetailDTO pDetailDTO) throws Exception;
 	
-	void insertProductDetail(String maSP, int maMau, int maSize, int soLuong) throws HibernateException;
+	void insertProductDetail(String maSP, int maMau, int maSize, int soLuong) throws Exception;
 	
-	void updateProductDetail(ProductDetailDTO pDetailDTO) throws HibernateException;
+	void updateProductDetail(ProductDetailDTO pDetailDTO) throws Exception;
 	
-	void deleteProductDetail(int id) throws HibernateException;
+	void deleteProductDetail(int id) throws Exception;
 	
-	ProductDetailDTO getProductDetailByIdCT(int id) throws HibernateException;
+	ProductDetailDTO getProductDetailByIdCT(int id) throws Exception;
 	
-	int getAmountProductDetail(String maSP, int maMau, int maSize) throws HibernateException;
+	int getAmountProductDetail(String maSP, int maMau, int maSize) throws Exception;
 	
 //	ProductDetailDTO getProductDetailByIdSP(ProductDTO productDTO) throws HibernateException;
 	
-	List<ProductDetailDTO> getAllProductDetail() throws HibernateException;
+	List<ProductDetailDTO> getAllProductDetail() throws Exception;
 }

@@ -15,7 +15,7 @@ import com.duong.dao.UserDAO;
 import com.duong.entity.NguoiDung;
 
 @Repository
-//@Transactional
+@Transactional
 public class UserDAOImpl implements UserDAO{
 	
 	@Autowired
@@ -25,6 +25,7 @@ public class UserDAOImpl implements UserDAO{
 	public void insertUser(NguoiDung nguoidung) throws SQLException {
 		Session session = sessionFactory.openSession();
 		session.save(nguoidung);
+		session.flush();
 		session.close();
 	}
 

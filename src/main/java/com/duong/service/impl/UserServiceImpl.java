@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.UserDAO;
 import com.duong.entity.NguoiDung;
@@ -13,7 +14,7 @@ import com.duong.model.UserDTO;
 import com.duong.service.UserService;
 
 @Service
-//@Transactional
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
