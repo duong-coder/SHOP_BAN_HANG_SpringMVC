@@ -148,4 +148,19 @@ public class ProductDetailController {
 
 		return "redirect:/admin/all-product-detail/" + maSP;
 	}
+	
+	@RequestMapping(value = "/delete-product-detail/{maSP}/{maMau}/{maSize}", method =  RequestMethod.GET)
+	public String getDeleteProductDetail(HttpServletRequest request,
+			@PathVariable("maSP") String maSP,
+			@PathVariable("maMau") int maMau,
+			@PathVariable("maSize") int maSize) {
+		try {
+			detailService.deleteProductDetail(maSP, maMau, maSize);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/all-product-detail/" + maSP;
+	}
 }

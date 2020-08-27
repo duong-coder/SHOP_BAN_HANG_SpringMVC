@@ -123,8 +123,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 	@Override
 	public void deleteProductDetail(String maSP, int maMau, int maSize) throws HibernateException {
-		// TODO Auto-generated method stub
-
+		productDetailDAO.deleteProductDetail(maSP, maMau, maSize);
 	}
 
 	@Override

@@ -27,7 +27,7 @@
 				<td>${productDetail.amount }</td>
 				<td>
 					<a href="<c:url value='/admin/edit-product-detail/${productDetails[0].getProductDTO().maSp }/${productDetail.getColor().id }/${productDetail.getSize().id }'/>">Sua</a>
-					<a href="<c:url value='/admin/delete-product-detail/'/>">Xoa</a>
+					<a href="<c:url value='/admin/delete-product-detail/${productDetails[0].getProductDTO().maSp }/${productDetail.getColor().id }/${productDetail.getSize().id }'/>">Xoa</a>
 				</td>
 			</tr>
 				
