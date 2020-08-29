@@ -51,6 +51,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 		Session session = sessionFactory.openSession();
 		DanhMuc danhMuc =  (DanhMuc) session.get(DanhMuc.class, id);
 		List<SanPham> phams = danhMuc.getSanPhams();
+		phams.toString();
 		session.close();
 		return phams;
 	}

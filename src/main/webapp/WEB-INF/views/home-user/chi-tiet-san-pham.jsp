@@ -77,26 +77,14 @@
         
         <div class="container category">
             <ul>
-                <li class="category-select">
-                    <img src="<c:url value="/static/image/image-app/logo-apple.png" />" alt="" width="48px" height="48px">
-                    Apple
-                </li>
-                <li>
-                    <img src="<c:url value="/static/image/image-app/logo-xiaomi.png" />" alt="" width="48px" height="48px">
-                    Xiaomi
-                </li>
-                <li>
-                    <img src="<c:url value="/static/image/image-app/logo-samsung.jpg" />" alt="" width="48px" height="48px">
-                    SamSung
-                </li>
-                <li>
-                    <img src="<c:url value="/static/image/image-app/logo-oppo.jpg" />" alt="" width="48px" height="48px">
-                    Oppo
-                </li>
-                <li>
-                    <img src="<c:url value="/static/image/image-app/logo-oneplus.png" />" alt="" width="48px" height="48px">
-                    OnePlus
-                </li>
+            	<c:forEach items="${categoryDTOs }" var="category">
+            		<li id="category-${category.id }" class="">
+            			<a href='<c:url value="/products/category/${category.id }" />'>
+		                    <img src="<c:url value="/static/image/image-app/${category.image }" />" alt="" width="48px" height="48px">
+		                    ${category.name }
+	                    </a>
+	                </li>
+            	</c:forEach>
             </ul>
    		</div>
         
@@ -137,7 +125,7 @@
                     		<li style="border: solid 1px black;">
                     			<c:choose>
 							         <c:when test = "${i.index == 0}">
-							            <input type="radio" value="${sizeDTO.id }" checked="checked" id="size${i.index }${i.index }" name="size"/>
+							            <input type="radio" value="${sizeDTO.id }" checked="checked" id="size${i.index }" name="size"/>
 							         </c:when>
 
 							         <c:otherwise>

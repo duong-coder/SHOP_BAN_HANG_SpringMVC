@@ -11,7 +11,7 @@
 	
 	<jsp:include page="../../layouts/head-home.jsp"/>
 	
-    <link rel="stylesheet" href="../static/css/trangchu.css">
+    <link rel="stylesheet" href="<c:url value="/static/css/trangchu.css"/>">
 	<style type="text/css">
 		.navbar-ct{
 		    background-color: black;
@@ -41,8 +41,15 @@
 		    border-left: 1px solid black;
 		    border-right: 1px solid black;
 		}
+		.category ul li:hover{
+			background-color: black;
+		}
+		.category ul li > a{
+			text-decoration: none;
+			display: block;
+		}
 		.category-select{
-		    background-color: rgb(206, 200, 200);
+		    background-color: black;
 		} 
 	</style>
 </head>	
@@ -54,26 +61,14 @@
         
         <div class="container category">
             <ul>
-                <li class="category-select">
-                    <img src="<c:url value="/static/image/image-app/logo-apple.png" />" alt="" width="48px" height="48px">
-                    Apple
-                </li>
-                <li>
-                    <img src="<c:url value="/static/image/image-app/logo-xiaomi.png" />" alt="" width="48px" height="48px">
-                    Xiaomi
-                </li>
-                <li>
-                    <img src="<c:url value="/static/image/image-app/logo-samsung.jpg" />" alt="" width="48px" height="48px">
-                    SamSung
-                </li>
-                <li>
-                    <img src="<c:url value="/static/image/image-app/logo-oppo.jpg" />" alt="" width="48px" height="48px">
-                    Oppo
-                </li>
-                <li>
-                    <img src="<c:url value="/static/image/image-app/logo-oneplus.png" />" alt="" width="48px" height="48px">
-                    OnePlus
-                </li>
+            	<c:forEach items="${categoryDTOs }" var="category">
+            		<li id="category-${category.id }" class="">
+            			<a href='<c:url value="/products/category/${category.id }" />'>
+		                    <img src="<c:url value="/static/image/image-app/${category.image }" />" alt="" width="48px" height="48px">
+		                    ${category.name }
+	                    </a>
+	                </li>
+            	</c:forEach>
             </ul>
    		</div>
         

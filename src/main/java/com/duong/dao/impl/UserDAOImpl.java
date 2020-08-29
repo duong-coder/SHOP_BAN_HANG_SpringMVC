@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public NguoiDung getSignInByMaNguoiDung(String usename, String password) throws SQLException{
 		Session session = sessionFactory.openSession();
-		String hql = "from Nguoidung where maNguoiDung = :username AND matKhau = :password";
+		String hql = "from NguoiDung where maNguoiDung = :username AND matKhau = :password";
 		Query query = session.createQuery(hql);
 		query.setParameter("username",usename);
 		query.setParameter("password",password);
