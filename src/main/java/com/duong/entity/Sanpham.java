@@ -31,6 +31,10 @@ public class SanPham implements Serializable {
 	@Column(name = "TenSP")
 	private String tenSP;
 	
+	@ManyToOne
+	@JoinColumn(name = "MaDanhMuc")
+	private DanhMuc danhMuc;
+	
 	@OneToMany(mappedBy="sanPham")
 	private List<ChiTietSanPham> chiTietSanPhams;
 
@@ -75,6 +79,14 @@ public class SanPham implements Serializable {
 
 	public void setTenSP(String tenSP) {
 		this.tenSP = tenSP;
+	}
+	
+	public DanhMuc getDanhMuc() {
+		return danhMuc;
+	}
+
+	public void setDanhMuc(DanhMuc danhMuc) {
+		this.danhMuc = danhMuc;
 	}
 
 	public List<ChiTietSanPham> getChiTietSanPhams() {
