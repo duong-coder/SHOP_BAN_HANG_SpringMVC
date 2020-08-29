@@ -25,7 +25,7 @@ public class DanhMuc implements Serializable {
 	@Column(name = "HinhAnh")
 	private String hinhAnh;
 	
-	@OneToMany(mappedBy="mauSac")
+	@OneToMany(mappedBy="danhMuc")
 	private List<SanPham> sanPhams;
 
 	

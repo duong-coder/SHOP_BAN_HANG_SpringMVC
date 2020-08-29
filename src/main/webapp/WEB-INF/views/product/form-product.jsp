@@ -23,6 +23,13 @@
 		 <form:input path="tenSp"/> <br/>
 		<p style="color:red;"><form:errors path="tenSp" /> </p>
 		
+		DANH MUC
+		<select name="categoryID">
+			<c:forEach items="${categoryDTOs }" var="categoryDTO">
+				<option value="${categoryDTO.id }">${categoryDTO.name }</option>
+			</c:forEach>
+		</select>
+		
 		MO TA <br/>
 		<form:textarea path="moTa"/> <br/>
 		

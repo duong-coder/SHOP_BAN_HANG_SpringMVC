@@ -56,8 +56,14 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public List<SanPham> getAllProduct() throws Exception {
 		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(SanPham.class);
-		return criteria.list();
+//		Criteria criteria = session.createCriteria(SanPham.class);
+		String hql = "from SanPham";
+		Query query = session.createQuery(hql);
+		List<SanPham> sanphams = query.list();
+		session.close();
+		
+		return sanphams;
+//		return criteria.list();
 	}
 	
 	@Override
@@ -78,10 +84,7 @@ public class ProductDAOImpl implements ProductDAO{
 		SanPham sanPham = (SanPham) session.get(SanPham.class, maSP);
 		if(sanPham != null) {
 			List<ChiTietSanPham> ctsps = sanPham.getChiTietSanPhams();
-			for(ChiTietSanPham ctsp:ctsps) {
-				System.out.println(/* ctsp.getIdChiTiet() + "///" + */ ctsp.getMauSac().getTenMau()
-						+  "///" + ctsp.getSanPham().getTenSP() + "///" + + ctsp.getSoLuong());
-			}
+			ctsps.toString();
 			session.close();
 			return ctsps;
 		}

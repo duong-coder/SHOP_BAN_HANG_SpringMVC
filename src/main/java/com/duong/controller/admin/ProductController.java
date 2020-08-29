@@ -1,5 +1,6 @@
 package com.duong.controller.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.duong.model.CategoryDTO;
 import com.duong.model.ProductDTO;
+import com.duong.service.CategoryService;
 import com.duong.service.ProductService;
 import com.duong.uitils.ReadWrite;
 
@@ -23,6 +26,10 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CategoryService categoryService;
+	
 	@Autowired
 	ReadWrite readWrite;
 
@@ -41,14 +48,26 @@ public class ProductController {
 
 	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
 	public String addProduct(HttpServletRequest request) {
+		List<CategoryDTO> categoryDTOs = new ArrayList<CategoryDTO>();
+		try {
+			categoryDTOs = categoryService.getAllCategory();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setAttribute("productDTO", new ProductDTO());
-
+		request.setAttribute("categoryDTOs", categoryDTOs);
+		
 		return "product/form-product";
 	}
 
 	@RequestMapping(value = "/add-product", method = RequestMethod.POST)
 	public String addProduct(HttpServletRequest request, @ModelAttribute(value = "productDTO") ProductDTO productDTO,
-			@RequestParam(value = "file") MultipartFile file) {
+			@RequestParam(value = "file") MultipartFile file,
+			@RequestParam("categoryID") int categoryId) {
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setId(categoryId);
+		productDTO.setCategory(categoryDTO);
 		try {
 			readWrite.saveImageProduct(file);
 			productDTO.setTenAnh(file.getOriginalFilename());
@@ -80,9 +99,13 @@ public class ProductController {
 	public String editProductByMaSP(HttpServletRequest request, 
 			@PathVariable(value = "maSp") String maSp) {
 		ProductDTO productDTO = null;
+		List<CategoryDTO> categoryDTOs = new ArrayList<CategoryDTO>();
 		try {
 			productDTO = productService.getProuctByMaSp(maSp);
+			categoryDTOs = categoryService.getAllCategory();
+			
 			request.setAttribute("productDTO", productDTO);
+			request.setAttribute("categoryDTOs", categoryDTOs);
 			System.out.println(productDTO.getTenAnh());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -94,8 +117,11 @@ public class ProductController {
 
 	@RequestMapping(value = "/edit-product", method = RequestMethod.POST)
 	public String editProductByMaSP(HttpServletRequest request, @ModelAttribute(value = "productDTO") ProductDTO dto,
-			@RequestParam(value = "file") MultipartFile file) {
-//		System.out.println(dto.getTenAnh());
+			@RequestParam(value = "file") MultipartFile file,
+			@RequestParam("categoryID") int categoryId) {
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setId(categoryId);
+		dto.setCategory(categoryDTO);
 		try {
 			readWrite.saveImageProduct(file);
 			dto.setTenAnh(file.getOriginalFilename());
@@ -106,7 +132,7 @@ public class ProductController {
 			return "redirect:/admin/edit-product/" + dto.getMaSp();
 		}
 
-		return "redirect:/admin/product-detail/" + dto.getMaSp();
+		return "redirect:/admin/infor-product/" + dto.getMaSp();
 	}
 	
 	@RequestMapping(value = "/delete-product/{maSp}", method = RequestMethod.GET)

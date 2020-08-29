@@ -8,6 +8,7 @@ public class ProductDTO {
 	private String moTa;
 	private double gia;
 	private String tenAnh;
+	private CategoryDTO category;
 	private MultipartFile file;
 	
 	public ProductDTO() {
@@ -52,6 +53,14 @@ public class ProductDTO {
 
 	public void setTenAnh(String tenAnh) {
 		this.tenAnh = tenAnh;
+	}
+
+	public CategoryDTO getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryDTO category) {
+		this.category = category;
 	}
 
 	public MultipartFile getFile() {

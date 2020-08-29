@@ -9,9 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.ProductDAO;
 import com.duong.entity.ChiTietSanPham;
+import com.duong.entity.DanhMuc;
 import com.duong.entity.MauSac;
 import com.duong.entity.SanPham;
 import com.duong.entity.SizeSanPham;
+import com.duong.model.CategoryDTO;
 import com.duong.model.ColorDTO;
 import com.duong.model.ProductDTO;
 import com.duong.model.ProductDetailDTO;
@@ -34,6 +36,10 @@ public class ProductServiceImpl implements ProductService{
 		sp.setGia(proDTO.getGia());
 		sp.setAnhMoTa(proDTO.getTenAnh());
 		
+		DanhMuc dm = new DanhMuc();
+		dm.setMaDanhMuc(proDTO.getCategory().getId());
+		sp.setDanhMuc(dm);
+		
 		productDAO.insertProduct(sp);
 	}
 
@@ -47,6 +53,11 @@ public class ProductServiceImpl implements ProductService{
 			sp.setMoTa(proDTO.getMoTa());
 			sp.setGia(proDTO.getGia());
 			sp.setAnhMoTa(proDTO.getTenAnh());
+			
+			DanhMuc dm = new DanhMuc();
+			dm.setMaDanhMuc(proDTO.getCategory().getId());
+			sp.setDanhMuc(dm);
+			
 			
 			productDAO.updateProduct(sp);
 		}
@@ -71,6 +82,13 @@ public class ProductServiceImpl implements ProductService{
 		dto.setGia(sp.getGia());
 		dto.setTenAnh(sp.getAnhMoTa());
 		
+		DanhMuc dm = sp.getDanhMuc();
+		CategoryDTO catDto = new CategoryDTO();
+		catDto.setId(dm.getMaDanhMuc());
+		catDto.setName(dm.getTenDanhMuc());
+		catDto.setImage(dm.getHinhAnh());
+		dto.setCategory(catDto);
+		
 		return dto;
 	}
 
@@ -85,6 +103,13 @@ public class ProductServiceImpl implements ProductService{
 			dto.setMoTa(sp.getMoTa());
 			dto.setGia(sp.getGia());
 			dto.setTenAnh(sp.getAnhMoTa());
+			
+			DanhMuc dm = sp.getDanhMuc();
+			CategoryDTO catDto = new CategoryDTO();
+			catDto.setId(dm.getMaDanhMuc());
+			catDto.setName(dm.getTenDanhMuc());
+			catDto.setImage(dm.getHinhAnh());
+			dto.setCategory(catDto);
 			
 			productDTOs.add(dto);
 		});
@@ -102,6 +127,13 @@ public class ProductServiceImpl implements ProductService{
 			dto.setMoTa(sp.getMoTa());
 			dto.setGia(sp.getGia());
 			dto.setTenAnh(sp.getAnhMoTa());
+			
+			DanhMuc dm = sp.getDanhMuc();
+			CategoryDTO catDto = new CategoryDTO();
+			catDto.setId(dm.getMaDanhMuc());
+			catDto.setName(dm.getTenDanhMuc());
+			catDto.setImage(dm.getHinhAnh());
+			dto.setCategory(catDto);
 			
 			productDTOs.add(dto);
 		});
@@ -122,6 +154,13 @@ public class ProductServiceImpl implements ProductService{
 				dto.setMoTa(sanPham.getMoTa());
 				dto.setGia(sanPham.getGia());
 				dto.setTenAnh(sanPham.getAnhMoTa());
+				
+				DanhMuc dm = sanPham.getDanhMuc();
+				CategoryDTO catDto = new CategoryDTO();
+				catDto.setId(dm.getMaDanhMuc());
+				catDto.setName(dm.getTenDanhMuc());
+				catDto.setImage(dm.getHinhAnh());
+				dto.setCategory(catDto);
 				
 				MauSac mauSac = ctsp.getMauSac();
 				ColorDTO colorDTO = new ColorDTO();

@@ -12,41 +12,70 @@
 	<jsp:include page="../../layouts/head-home.jsp"/>
 	
     <link rel="stylesheet" href="../static/css/trangchu.css">
-
-</head>
+	<style type="text/css">
+		.navbar-ct{
+		    background-color: black;
+		}
+		.category{
+		    padding: 10px;
+		    margin-top: 20px;
+		    width: 1140px;
+		    background-color: #f8f9fa;
+		    border: 1px solid black ;
+		}
+		.category ul{
+		    padding: 0px;
+		    margin: 0px;
+		    list-style: none;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    align-content: space-around;
+		}
+		.category ul li{
+		    padding-left: 50px;
+		    padding-right:50px;
+		    /* margin-left: 40px; */
+		    /* margin-right: 40px; */
+		    font-size: large;
+		    border-left: 1px solid black;
+		    border-right: 1px solid black;
+		}
+		.category-select{
+		    background-color: rgb(206, 200, 200);
+		} 
+	</style>
+</head>	
 
 <body>
 	
     <div class="container-fluid">
     	<jsp:include page="../../layouts/header-home.jsp"/>
-<%-- 
-        <div class="text-center u-margin-card-group">
-            <div class="card-group ">
-                <div class="card u-border-card">
-                    <h2><img src="<c:url value="static/image/image-app/icons8-gold-medal-100.png" />" class="fa fa-home fa-3x"> </h2>
-                    <div class="card-body">
-                        <h3 class="card-title">CHẤT LƯỢNG</h3>
-                        <p class="card-text">Chúng tôi cam kết mang sẽ đến cho các bạn chất lượng sản phẩm tốt nhất</p>
-                    </div>
-                </div>
-                <div class="card u-border-card">
-                    <h2><img src="<c:url value="static/image/image-app/icons8-money-box-100.png" />" class="fa fa-home fa-3x"> </h2>
-                    <div class="card-body">
-                        <h3 class="card-title">TIẾT KIỆM CHI PHÍ</h3>
-                        <p class="card-text">Cam kết giá rẻ nhất Việt Nam giúp các bạn tiết kiệm hơn 20% cho từng sản
-                            phẩm</p>
-                    </div>
-                </div>
-                <div class="card u-border-card">
-                    <h2><img src="<c:url value="static/image/image-app/icons8-car-100.png" />" class="fa fa-home fa-3x"> </h2>
-                    <div class="card-body">
-                        <h3 class="card-title">GIAO HÀNG</h3>
-                        <p class="card-text">Cam kết giao hàng tận nơi trong ngày. Để mang sản phẩm đến cho
-                            quý khách nhanh nhất</p>
-                    </div>
-                </div>
-            </div>
-        </div> --%>
+        
+        <div class="container category">
+            <ul>
+                <li class="category-select">
+                    <img src="<c:url value="/static/image/image-app/logo-apple.png" />" alt="" width="48px" height="48px">
+                    Apple
+                </li>
+                <li>
+                    <img src="<c:url value="/static/image/image-app/logo-xiaomi.png" />" alt="" width="48px" height="48px">
+                    Xiaomi
+                </li>
+                <li>
+                    <img src="<c:url value="/static/image/image-app/logo-samsung.jpg" />" alt="" width="48px" height="48px">
+                    SamSung
+                </li>
+                <li>
+                    <img src="<c:url value="/static/image/image-app/logo-oppo.jpg" />" alt="" width="48px" height="48px">
+                    Oppo
+                </li>
+                <li>
+                    <img src="<c:url value="/static/image/image-app/logo-oneplus.png" />" alt="" width="48px" height="48px">
+                    OnePlus
+                </li>
+            </ul>
+   		</div>
         
         <div class="container text-center u-box-san-pham">
             <h2 class="u-title-sanpham">TẤT CẢ SẢN PHẨM</h2>
