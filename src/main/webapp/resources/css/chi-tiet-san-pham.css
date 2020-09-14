@@ -92,3 +92,8 @@ body{
 .infor-product .infor-detail{
 	padding-left: 30px
 }
+.stocks{
+	color: red;
+	font-size: large;
+	font-weight: bold;
+}
