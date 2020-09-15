@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="./css/trangchu.css">
-    <link rel="stylesheet" href="./css/gio-hang.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../resources/css/trangchu.css">
+    <link rel="stylesheet" href="../../../resources/css/gio-hang.css">
+    <link rel="stylesheet" href="../../../resources/css/chi-tiet-san-pham.css">
+    <link rel="stylesheet" href="../../../resources/css/don-hang.css">
 </head>
+
 <body>
-    <div class="header ">
+
+    <div class="navbar-ct">
         <nav class="navbar sticky-top navbar-expand-lg navbar-light u-nav-bar">
             <a class="navbar-brand" href="#">
-                <img src="./image/logo-shop.jpg" alt="" width="80px" height="80px">
+                <img src="" alt="" width="80px" height="80px">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto u-nav-bar-center">
                     <li class="nav-item active ">
-                        <a class="nav-link u-word-color" href="#">TRANG CHỦ <span
-                                class="sr-only">(current)</span></a>
+                        <a class="nav-link u-word-color" href="">TRANG CHỦ <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link u-word-color" href="#">SẢN PHẨM</a>
+                        <a class="nav-link u-word-color" href="">SẢN PHẨM</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link u-word-color" href="#">DỊCH VỤ</a>
@@ -42,77 +46,134 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item active ">
-                        <a class="nav-link u-word-color" href="#">ĐĂNG NHẬP</a>
+                        <a class="nav-link u-word-color" href="">ĐĂNG NHẬP </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link u-word-color" href="#">ĐĂNG XUẤT</a>
+                        <a class="nav-link u-word-color" href="">ĐĂNG XUẤT</a>
+
                     </li>
                 </ul>
-                <a class="navbar-brand" href="#">
-                    <img src="./image/icons8-shopping-cart-64.png" alt="" width="50px" height="50px">
+                <a class="navbar-brand count-cart" href="">
+                    <img src="" alt="" width="50px" height="50px">
+                    <p>1</p>
                 </a>
             </div>
         </nav>
-        <div class="container h-90 ">
-            <div class="row align-items-center h-100 ">
-                <div class="col-6 mx-auto">
-                    <div class="jumbotron text-center u-card-content">
-                        <div class="card-body ">
-                            <p class="card-text u-word-color">Ngày 23/07 - 01/08/2020</p>
-                            <h1 class="card-title u-word-color">MUA 1 TẶNG 1</h1>
-                            <a href="#" class="btn bg-success u-word-color">XEM NGAY</a>
+    </div>
+
+    <div class="container body-order">
+        <div class="row">
+            <div class="col-7">
+                <div class="row select-all-item">
+                    <div class="col-0.5 checkbox-item">
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="col-10">
+                        <span class="text-title">CHỌN TẤT CẢ (1 SẢN PHẨM)</span>
+                    </div>
+                    <div class="col-1.5">
+                        <i class="fa fa-trash-o" style="margin-right: 10px; font-size:24px; color: #9e9e9e;"></i>
+                        <span class="text-title">XÓA</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row item-order">
+                    <div class="col-1 checkbox-item">
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="col-2 image-item">
+                        <img src="https://vn-live.slatic.net/p/b6ed033df47fef2bfd448a12dd8a0493.jpg" alt="" width="90px" height="90px">
+                    </div>
+                    <div class="col-5">
+                        <p>Củ sạc nhanh điện thoại nhiều cổng QC 3.0 củ sạc du lịch</p>
+                        <p class="infor-item text-title">No Brand, Nhóm màu:black, Brand Compatibility:ALL</p>
+                    </div>
+                    <div class="col-2 price-item">
+                        <p style="color: orangered;">55.000 ₫</p>
+                        <i class="fa fa-trash-o" style="font-size:24px"></i>
+                    </div>
+                    <div class="col-2">
+                        <input class="amout-item" type="number">
+                    </div>
+                </div>
+                <hr>
+                <div class="row item-order">
+                    <div class="col-1 checkbox-item">
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="col-2 image-item">
+                        <img src="https://vn-live.slatic.net/p/b6ed033df47fef2bfd448a12dd8a0493.jpg" alt="" width="90px" height="90px">
+                    </div>
+                    <div class="col-5">
+                        <p>Củ sạc nhanh điện thoại nhiều cổng QC 3.0 củ sạc du lịch</p>
+                        <p class="infor-item">No Brand, Nhóm màu:black, Brand Compatibility:ALL</p>
+                    </div>
+                    <div class="col-2 price-item">
+                        <p>55.000 ₫</p>
+                        <i class="fa fa-trash-o" style="font-size:24px"></i>
+                    </div>
+                    <div class="col-2">
+                        <input class="amout-item" type="number">
+                    </div>
+                </div>
+                <hr>
+                <div class="row item-order">
+                    <div class="col-1 checkbox-item">
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="col-2 image-item">
+                        <img src="https://vn-live.slatic.net/p/b6ed033df47fef2bfd448a12dd8a0493.jpg" alt="" width="90px" height="90px">
+                    </div>
+                    <div class="col-5">
+                        <p>Củ sạc nhanh điện thoại nhiều cổng QC 3.0 củ sạc du lịch</p>
+                        <p class="infor-item">No Brand, Nhóm màu:black, Brand Compatibility:ALL</p>
+                    </div>
+                    <div class="col-2 price-item">
+                        <p>55.000 ₫</p>
+                        <i class="fa fa-trash-o" style="font-size:24px"></i>
+                    </div>
+                    <div class="col-2">
+                        <input class="amout-item" type="number">
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 confirm-order">
+                <div class="place-order">
+                    <p class="text-title">ĐỊA ĐIỂM</p>
+                    <p><i class="fa fa-map-marker" style="font-size: 24px;"></i> Tô Hiệu</p>
+                </div>
+                <hr>
+                <div class="infor-order">
+                    <p>Thông tin đơn hàng</p>
+                    <div class="money-order">
+                        <p class="text-title">Tạm tính:</p>
+                        <div>
+                            <span>0 đ</span>
                         </div>
+                    </div>
+                    <div class="money-order">
+                        <p class="text-title">Phí giao hàng: </p>
+                        <span>0 đ</span>
+                    </div>
+                    <div class="money-order sum-money-order">
+                        <p>Tổng cộng: </p>
+                        <span style="color: orangered;">0 đ</span>
+                    </div>
+                    <div class="btn-buy-order">
+                        <button class="btn btn-warning">XÁC NHẬN GIỎ HÀNG</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container body-carts">
-        <p class="my-cart">Đơn hàng của tôi</p>
-        <div class="select-amount-cart">
-            <label for="amount-cart">Hiển thị:</label>
-            <select name="amount-cart" id="amount-cart">
-                <option value="5">5 đơn hàng gần nhất</option>
-                <option value="10">10 đơn hàng gần nhất</option>
-                <option value="15">15 đơn hàng gần nhất</option>
-            </select>
-        </div>
-        <div class="cart">
-            <div class="row title-cart">
-                <div class="col-10 id-date-cart">
-                    <p class="id-cart">Đơn hàng:#251026803831791</p>
-                    <p class="date-cart">Đặt ngày 20 thg 7 2020 19:48:22</p>
-                </div>
-                <p class="col-2 text-center detail-cart">Chi tiết</p>
-            </div>
-            <hr>
-            <div class="row content-cart">
-                <img src="./image/iphone-12-pro-max-600x600.jpg" alt="" width="100px">
-                <p class="col">Iphone 12 Pro Max</p>
-                <p class="col">Số lượng: 1</p>
-                <div class="col status-item-cart">
-                    Đã giao hàng
-                </div>
-                <p class="col">Đã giao ngày 25 thg 6 2020</p>
-            </div>
-            <div class="row content-cart">
-                <img src="./image/iphone-12-pro-max-600x600.jpg" alt="" width="100px">
-                <p class="col">Iphone 12 Pro Max</p>
-                <p class="col">Số lượng: 1</p>
-                <p class="col status-item-cart">Đã giao hàng</p>
-                <p class="col">Đã giao ngày 25 thg 6 2020</p>
-            </div>
-        </div>
-    </div>
-    
+
     <div class=" container-fluid footer">
         <div class="text-center u-word-color">
             <div class="card-group ">
                 <div class="card u-border-card u-card-content">
                     <div class="card-body">
                         <h3 class="card-title">THÔNG TIN SHOP</h3>
-                        <p class="card-text text-left">Online Shop là một cửa hàng điện thoại đầy uy tín
-                            đảm bảo chất lượng tốt nhất cho khách hàng
+                        <p class="card-text text-left">Online Shop là một cửa hàng điện thoại đầy uy tín đảm bảo chất lượng tốt nhất cho khách hàng
                         </p>
                     </div>
                 </div>
@@ -133,8 +194,7 @@
                         <form class="card-text text-left">
                             <input class="form-control" type="email" placeholder="Email">
                             <div class="form-group u-text-area">
-                                <textarea class="form-control" id="exampleFormControlTextarea1"
-                                    placeholder="Nội dung" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Nội dung" rows="3"></textarea>
                             </div>
                             <button type="button" class="btn btn-success btn-lg btn-block">Đồng ý</button>
                         </form>
@@ -143,6 +203,6 @@
             </div>
         </div>
     </div>
-</div>
 </body>
+
 </html>

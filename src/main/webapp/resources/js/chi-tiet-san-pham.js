@@ -60,6 +60,15 @@ $(document).ready(function() {
 			},
 			success : function() {
 			}
+		}).done(function(){
+			$.ajax({
+				url : "/ShopBanHang/order/size-order",
+				type : "GET",
+				success : function(amount) {
+					$("#amountItem").text(amount);
+				}
+			})
+			
 		});
 	});
 });

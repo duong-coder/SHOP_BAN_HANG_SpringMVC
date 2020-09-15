@@ -11,7 +11,8 @@
 	
 	<jsp:include page="../../layouts/head-home.jsp"/>
 	
-    <link rel="stylesheet" href="static/css/trangchu.css"> 
+    <link rel="stylesheet" href="<c:url value='/static/css/chi-tiet-san-pham.css'/>"> 
+    <link rel="stylesheet" href="<c:url value='/static/css/trangchu.css'/>">
 
 </head>
 

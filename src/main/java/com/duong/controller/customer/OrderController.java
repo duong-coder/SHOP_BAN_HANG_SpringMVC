@@ -18,7 +18,7 @@ public class OrderController {
 	public String getCart(HttpServletRequest request, HttpSession session) {
 		OrderDTO order = (OrderDTO) session.getAttribute("order");
 		if (order != null) {
-			request.setAttribute("orderCart", order);
+//			request.setAttribute("orderCart", order);
 		}
 		
 		return "home-user/gio-hang";

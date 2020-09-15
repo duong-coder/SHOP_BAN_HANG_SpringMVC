@@ -64,7 +64,7 @@ public class OrderAPI {
 
 			order.setUser(userDTO);
 			order.setDate(date);
-			order.setStatus(false);
+			order.setStatus(status);
 			order.setOrderDetailDTOs(orderDetailDTOs);
 		} else {
 			order = new OrderDTO();
@@ -93,5 +93,16 @@ public class OrderAPI {
 
 		}
 		session.setAttribute("order", order);
+	}
+	
+	@RequestMapping(value = "/size-order", method = RequestMethod.GET)
+	public String getSizeOrder(HttpSession session) {
+		OrderDTO order = (OrderDTO) session.getAttribute("order");
+		if (order != null) {
+			List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
+			return "" + orderDetailDTOs.size();
+		}else {
+			return "0";
+		}
 	}
 }

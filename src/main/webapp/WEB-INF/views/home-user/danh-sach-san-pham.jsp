@@ -11,47 +11,9 @@
 	
 	<jsp:include page="../../layouts/head-home.jsp"/>
 	
+	<link rel="stylesheet" href="<c:url value='/static/css/chi-tiet-san-pham.css'/>"> 
     <link rel="stylesheet" href="<c:url value="/static/css/trangchu.css"/>">
-	<style type="text/css">
-		.navbar-ct{
-		    background-color: black;
-		}
-		.category{
-		    padding: 10px;
-		    margin-top: 20px;
-		    width: 1140px;
-		    background-color: #f8f9fa;
-		    border: 1px solid black ;
-		}
-		.category ul{
-		    padding: 0px;
-		    margin: 0px;
-		    list-style: none;
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-		    align-content: space-around;
-		}
-		.category ul li{
-		    padding-left: 50px;
-		    padding-right:50px;
-		    /* margin-left: 40px; */
-		    /* margin-right: 40px; */
-		    font-size: large;
-		    border-left: 1px solid black;
-		    border-right: 1px solid black;
-		}
-		.category ul li:hover{
-			background-color: black;
-		}
-		.category ul li > a{
-			text-decoration: none;
-			display: block;
-		}
-		.category-select{
-		    background-color: black;
-		} 
-	</style>
+	
 </head>	
 
 <body>
