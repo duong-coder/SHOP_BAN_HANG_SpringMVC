@@ -31,7 +31,7 @@
                     <div class="col-10">
                         <span class="text-title">CHỌN TẤT CẢ (${order.getOrderDetailDTOs().size() } SẢN PHẨM)</span>
                     </div>
-                    <div class="col-1.5">
+                    <div class="col-1.5" id="deleteAll">
                         <i class="fa fa-trash-o" style="margin-right: 10px; font-size:24px; color: #9e9e9e;"></i>
                         <span class="text-title">XÓA</span>
                     </div>
@@ -53,7 +53,7 @@
 	                    </div>
 	                    <div class="col-2 price-item">
 	                        <p style="color: orangered;">${item.getProductDetail().getProductDTO().getGia()}</p>
-	                        <i class="fa fa-trash-o" style="font-size:24px"></i>
+	                        <i class="fa fa-trash-o deleteItem" id="deleteItem${order.getOrderDetailDTOs().indexOf(item) }" style="font-size:24px"></i>
 	                    </div>
 	                    <div class="col-2">
 	                        <input class="amout-item" type="number" value="${item.getAmount() }">
@@ -93,6 +93,7 @@
     </div>
 
     <jsp:include page="../../layouts/footer-home.jsp"/>
+    <script type="text/javascript" src="<c:url value="/static/js/gio-hang.js"/>"></script>
 </body>
 
 </html>

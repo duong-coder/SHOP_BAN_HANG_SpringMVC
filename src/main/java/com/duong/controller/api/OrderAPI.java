@@ -94,14 +94,41 @@ public class OrderAPI {
 		}
 		session.setAttribute("order", order);
 	}
-	
+
+	@RequestMapping(value = "/delete-items-order", method = RequestMethod.POST)
+	public String deleteMoreItemOrder(HttpSession session, @RequestParam(value="indexs[]") int[] indexs) {
+		OrderDTO order = (OrderDTO) session.getAttribute("order");
+		if (order != null) {
+			List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
+			for (int i = indexs.length - 1; i >= 0; i--) {
+				orderDetailDTOs.remove(indexs[i]);
+				System.out.println(indexs[i]);
+			}
+			return "";
+		} else {
+			return "";
+		}
+	}
+
+//	@RequestMapping(value = "/delete-item-order", method = RequestMethod.GET)
+//	public String deleteAItemOrder(HttpSession session, @RequestParam("index") int index) {
+//		OrderDTO order = (OrderDTO) session.getAttribute("order");
+//		if (order != null) {
+//			List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
+//			orderDetailDTOs.remove(index);
+//			return "";
+//		} else {
+//			return "";
+//		}
+//	}
+
 	@RequestMapping(value = "/size-order", method = RequestMethod.GET)
 	public String getSizeOrder(HttpSession session) {
 		OrderDTO order = (OrderDTO) session.getAttribute("order");
 		if (order != null) {
 			List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
 			return "" + orderDetailDTOs.size();
-		}else {
+		} else {
 			return "0";
 		}
 	}
