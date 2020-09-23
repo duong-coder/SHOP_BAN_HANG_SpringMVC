@@ -4,6 +4,7 @@ public class OrderDetailDTO {
 	private String maHDCT;
 	private ProductDetailDTO productDetail;
 	private int amount;
+	private double price; 
 	
 	
 	public String getMaHDCT() {
@@ -24,6 +25,13 @@ public class OrderDetailDTO {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
 	
 	
 }

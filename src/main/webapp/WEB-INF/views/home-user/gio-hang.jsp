@@ -48,15 +48,18 @@
 	                    	</a>
 	                    </div>
 	                    <div class="col-5">
-	                        <p>${item.getProductDetail().getProductDTO().getTenSp() }</p>
+	                        <p>${item.getProductDetail().getProductDTO().getTenSp() }</p> 
+	                        <input hidden="true" name="maSP" value="${item.getProductDetail().getProductDTO().getMaSp() }" >
 	                        <p class="infor-item text-title">Màu sắc: ${item.getProductDetail().getColor().getColor() }, Loại: ${item.getProductDetail().getSize().getSize() }</p>
+	                    	<input hidden="true" name="maMau" value="${item.getProductDetail().getColor().getId() }" >
+	                    	<input hidden="true" name="maSize" value="${item.getProductDetail().getSize().getId() }" >
 	                    </div>
 	                    <div class="col-2 price-item">
-	                        <p style="color: orangered;">${item.getProductDetail().getProductDTO().getGia()}</p>
+	                        <p id="priceItem${order.getOrderDetailDTOs().indexOf(item) }" style="color: orangered;">${item.getPrice()}</p>
 	                        <i class="fa fa-trash-o deleteItem" id="deleteItem${order.getOrderDetailDTOs().indexOf(item) }" style="font-size:24px"></i>
 	                    </div>
 	                    <div class="col-2">
-	                        <input class="amout-item" type="number" value="${item.getAmount() }">
+	                        <input class="amout-item" id="amountItem${order.getOrderDetailDTOs().indexOf(item) }" type="number" value="${item.getAmount() }">
 	                    </div>
 	                </div>
 	                <hr>

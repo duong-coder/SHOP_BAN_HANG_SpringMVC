@@ -44,6 +44,7 @@ public class OrderAPI {
 				if (sp.equals(maSP) && color == maMau && size == maSize) {
 					flagAddItem = false;
 					item.setAmount(item.getAmount() + 1);
+					item.setPrice(item.getProductDetail().getProductDTO().getGia() * item.getAmount());
 				}
 			}
 			if (flagAddItem) {
@@ -58,7 +59,7 @@ public class OrderAPI {
 				}
 				orderDetailDTO.setProductDetail(detailDTO);
 				orderDetailDTO.setAmount(1);
-
+				orderDetailDTO.setPrice(detailDTO.getProductDTO().getGia() * orderDetailDTO.getAmount());
 				orderDetailDTOs.add(orderDetailDTO);
 			}
 
@@ -83,7 +84,7 @@ public class OrderAPI {
 			}
 			orderDetailDTO.setProductDetail(detailDTO);
 			orderDetailDTO.setAmount(1);
-
+			orderDetailDTO.setPrice(detailDTO.getProductDTO().getGia() * orderDetailDTO.getAmount());
 			orderDetailDTOs.add(orderDetailDTO);
 
 			order.setUser(userDTO);
@@ -96,7 +97,7 @@ public class OrderAPI {
 	}
 
 	@RequestMapping(value = "/delete-items-order", method = RequestMethod.POST)
-	public String deleteMoreItemOrder(HttpSession session, @RequestParam(value="indexs[]") int[] indexs) {
+	public void deleteMoreItemOrder(HttpSession session, @RequestParam(value="indexs[]") int[] indexs) {
 		OrderDTO order = (OrderDTO) session.getAttribute("order");
 		if (order != null) {
 			List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
@@ -104,23 +105,30 @@ public class OrderAPI {
 				orderDetailDTOs.remove(indexs[i]);
 				System.out.println(indexs[i]);
 			}
-			return "";
-		} else {
-			return "";
 		}
 	}
-
-//	@RequestMapping(value = "/delete-item-order", method = RequestMethod.GET)
-//	public String deleteAItemOrder(HttpSession session, @RequestParam("index") int index) {
-//		OrderDTO order = (OrderDTO) session.getAttribute("order");
-//		if (order != null) {
-//			List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
-//			orderDetailDTOs.remove(index);
-//			return "";
-//		} else {
-//			return "";
-//		}
-//	}
+	
+	@RequestMapping(value = "/change-amount-item", method = RequestMethod.POST)
+	public String changeAmountItemInOrder(HttpSession session, @RequestParam("maSP") String maSP, @RequestParam("maMau") int maMau,
+			@RequestParam("maSize") int maSize,
+			@RequestParam("amount") int amountSpInItem) {
+		OrderDTO order = (OrderDTO) session.getAttribute("order");
+		List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
+		for(OrderDetailDTO orderDetailDTO: orderDetailDTOs) {
+			String maSPInArr = orderDetailDTO.getProductDetail().getProductDTO().getMaSp();
+			int maSizeInArr = orderDetailDTO.getProductDetail().getSize().getId();
+			int maMauInArr = orderDetailDTO.getProductDetail().getColor().getId();
+			
+			if(maSP.equals(maSPInArr) && maMau == maMauInArr && maSize == maSizeInArr) {
+				orderDetailDTO.setAmount(amountSpInItem);
+				orderDetailDTO.setPrice(orderDetailDTO.getProductDetail().getProductDTO().getGia() * orderDetailDTO.getAmount());
+				
+				return "" + orderDetailDTO.getPrice();
+			}
+		}
+		
+		return "0";
+	}
 
 	@RequestMapping(value = "/size-order", method = RequestMethod.GET)
 	public String getSizeOrder(HttpSession session) {
