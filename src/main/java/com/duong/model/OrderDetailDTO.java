@@ -26,6 +26,8 @@ public class OrderDetailDTO {
 		this.amount = amount;
 	}
 	public double getPrice() {
+		this.price = this.productDetail.getProductDTO().getGia() * this.amount;
+		
 		return price;
 	}
 	public void setPrice(double price) {

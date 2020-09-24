@@ -129,8 +129,34 @@ public class OrderAPI {
 		
 		return "0";
 	}
-
+	
 	@RequestMapping(value = "/size-order", method = RequestMethod.GET)
+	public String getTotalPriceOrder(HttpSession session) {
+		OrderDTO order = (OrderDTO) session.getAttribute("order");
+		if(order != null) {
+			List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
+			
+			return "" + orderDetailDTOs.size();
+		}
+		return "";
+	}
+	
+	@RequestMapping(value = "/price-item-order", method = RequestMethod.POST)
+	public String getPriceSelectedItemOrder(HttpSession session,
+			@RequestParam(value="indexs[]") int[] arrIndexItem) {
+		OrderDTO order = (OrderDTO) session.getAttribute("order");
+		List<OrderDetailDTO> orderDetailDTOs = order.getOrderDetailDTOs();
+		double totalPrice = 0d;
+		
+		for(int index: arrIndexItem) {
+			OrderDetailDTO orderDetailDTO = orderDetailDTOs.get(index);
+			totalPrice += orderDetailDTO.getPrice();
+		}
+		
+		return "" + totalPrice;
+	}
+
+	@RequestMapping(value = "/price-total-order", method = RequestMethod.GET)
 	public String getSizeOrder(HttpSession session) {
 		OrderDTO order = (OrderDTO) session.getAttribute("order");
 		if (order != null) {

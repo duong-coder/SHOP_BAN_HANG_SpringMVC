@@ -36,8 +36,13 @@ $(document).ready(function() {
 				inputSelectItems[i].checked = false;
 			}
 		}
-		
+		getPriceItem();
 	});
+	for(let i = 1; i < inputSelectItems.length; i++){
+		$(inputSelectItems[i]).click(function(){
+			getPriceItem();
+		});
+	}
 	
 	$("#deleteAll").click(function(){
 //		inputSelectItems.remove(0);
@@ -100,5 +105,33 @@ $(document).ready(function() {
 		
 		return false;
 	}
-	
+	function getIndexSelectItem(items){
+		let indexs = [];
+		for(let i = 1; i<items.length; i++){
+			if(items[i].checked){
+				let strIdInput = $(items[i]).attr("id");
+				let index = strIdInput.replace("item", "");
+				indexs.push(Number.parseInt(index));
+			}
+		}
+		
+		return indexs;
+	}
+	function getPriceItem(){
+		let indexs = getIndexSelectItem(inputSelectItems);
+		if(indexs.length > 0){
+		$.ajax({
+			url: '/ShopBanHang/order/price-item-order',
+			type: 'POST',
+			data: {
+				indexs: indexs
+			},
+			success: function(price){
+				$("#priceTemporary").text(price + " đ");
+			}
+			});
+		}else{
+			$("#priceTemporary").text("0 đ");
+		}
+	}
 });

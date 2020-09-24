@@ -10,6 +10,17 @@ public class OrderDTO {
 	private boolean status;
 	private List<OrderDetailDTO> orderDetailDTOs ;
 	
+	public double getTotalPrice() {
+		double totalPrice = 0d;
+		if(this.orderDetailDTOs != null) {
+			for(OrderDetailDTO orderDetailDTO:orderDetailDTOs) {
+				totalPrice += orderDetailDTO.getPrice();
+			}
+		}
+		
+		return totalPrice;
+	}
+	
 	public int getMaHD() {
 		return maHD;
 	}

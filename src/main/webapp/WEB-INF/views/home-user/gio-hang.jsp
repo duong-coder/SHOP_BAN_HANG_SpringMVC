@@ -76,7 +76,7 @@
                     <div class="money-order">
                         <p class="text-title">Tạm tính:</p>
                         <div>
-                            <span>0 đ</span>
+                            <span id="priceTemporary">0 đ</span>
                         </div>
                     </div>
                     <div class="money-order">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="money-order sum-money-order">
                         <p>Tổng cộng: </p>
-                        <span style="color: orangered;">0 đ</span>
+                        <span id="priceTotal" style="color: orangered;">0 đ</span>
                     </div>
                     <div class="btn-buy-order">
                         <button class="btn btn-warning">XÁC NHẬN GIỎ HÀNG</button>
