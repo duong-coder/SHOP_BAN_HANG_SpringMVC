@@ -13,9 +13,9 @@ import javax.persistence.*;
 public class ChiTietSanPham implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-//	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	private int idChiTiet;
+	@Id
+	@Column(name = "Id")
+	private String idChiTiet;
 	
 //	@Column(name = "MaMau")
 	@Id
@@ -80,5 +80,23 @@ public class ChiTietSanPham implements Serializable {
 	public void setSanPham(SanPham maSP) {
 		this.sanPham = maSP;
 	}
+
+	public String getIdChiTiet() {
+		return idChiTiet;
+	}
+
+	public void setIdChiTiet(String idChiTiet) {
+		this.idChiTiet = idChiTiet;
+	}
+
+	public SizeSanPham getSizeSP() {
+		return sizeSP;
+	}
+
+	public void setSizeSP(SizeSanPham sizeSP) {
+		this.sizeSP = sizeSP;
+	}
+	
+	
 
 }

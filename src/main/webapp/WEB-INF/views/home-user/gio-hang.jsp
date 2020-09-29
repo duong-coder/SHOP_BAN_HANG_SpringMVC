@@ -49,6 +49,7 @@
 	                    </div>
 	                    <div class="col-5">
 	                        <p>${item.getProductDetail().getProductDTO().getTenSp() }</p> 
+	                        <input hidden="true" name="maCTSP" value="${item.getProductDetail().getId() }" >
 	                        <input hidden="true" name="maSP" value="${item.getProductDetail().getProductDTO().getMaSp() }" >
 	                        <p class="infor-item text-title">Màu sắc: ${item.getProductDetail().getColor().getColor() }, Loại: ${item.getProductDetail().getSize().getSize() }</p>
 	                    	<input hidden="true" name="maMau" value="${item.getProductDetail().getColor().getId() }" >
@@ -88,7 +89,7 @@
                         <span id="priceTotal" style="color: orangered;">0 đ</span>
                     </div>
                     <div class="btn-buy-order">
-                        <button class="btn btn-warning">XÁC NHẬN GIỎ HÀNG</button>
+                        <a href="<c:url value="/order/save-order" />"><button class="btn btn-warning">XÁC NHẬN GIỎ HÀNG</button></a>
                     </div>
                 </div>
             </div>

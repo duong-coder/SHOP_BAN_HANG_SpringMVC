@@ -46,6 +46,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 //		sizeSanPham.setSize(sizeDTO.getSize());
 
 		ChiTietSanPham ctsp = new ChiTietSanPham();
+		ctsp.setIdChiTiet(pDetailDTO.getId());
 		ctsp.setSanPham(sp);
 		ctsp.setMauSac(mauSac);
 		ctsp.setSizeSanPham(sizeSanPham);
@@ -72,9 +73,10 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 //		sizeSanPham.setSize(sizeDTO.getSize());
 
 		ChiTietSanPham ctsp = new ChiTietSanPham();
+		ctsp.setIdChiTiet(maSP+maMau+maSize);
 		ctsp.setSanPham(sp);
 		ctsp.setMauSac(mauSac);
-		ctsp.setSizeSanPham(sizeSanPham);
+		ctsp.setSizeSanPham(sizeSanPham);	
 		ctsp.setSoLuong(soLuong);
 
 		productDetailDAO.insertProductDetail(ctsp);
@@ -156,11 +158,11 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		sanPham.setAnhMoTa(productDTO.getTenAnh());
 
 		ProductDetailDTO productDetailDTO = new ProductDetailDTO();
-//		productDetailDTO.setIdProductDetail(ctsp.getIdChiTiet());
 		productDetailDTO.setProductDTO(productDTO);
 		productDetailDTO.setColor(colorDTO);
 		productDetailDTO.setSize(sizeDTO);
 		productDetailDTO.setAmount(ctsp.getSoLuong());
+		productDetailDTO.setId();
 
 		return productDetailDTO;
 	}

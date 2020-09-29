@@ -52,7 +52,12 @@
                     </ul>
                     <a class="navbar-brand  count-cart" href="<c:url value="/order/cart" />">
                       <img src="<c:url value="/static/image/image-app/icons8-shopping-cart-64.png" />"alt="" width="50px" height="50px">
-                      <p id="amountItem">${order.getOrderDetailDTOs().size() }</p>
+                      <c:if test="${order.getOrderDetailDTOs().size() > 0 }">
+	                      <p id="amountItem">${order.getOrderDetailDTOs().size() }</p>
+                      </c:if>
+                      <c:if test="${order.getOrderDetailDTOs().size() <= 0 }">
+	                      <p id="amountItem" hidden="true">${order.getOrderDetailDTOs().size() }</p>
+                      </c:if>
                   </a>
                 </div>
             </nav>

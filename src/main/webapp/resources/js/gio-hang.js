@@ -23,6 +23,7 @@ $(document).ready(function() {
 			let maSize = $(maSizes[i]).val();
 			let amount = $(imputAmountItem[i]).val();
 			changeAmountInItem(maSP, maSize, maMau, amount, i);
+			getPriceItem();
 		});
 	}
 	

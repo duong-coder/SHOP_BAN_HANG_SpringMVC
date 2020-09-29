@@ -1,11 +1,19 @@
 package com.duong.model;
 
 public class ProductDetailDTO {
+	private String id;
 	private ProductDTO productDTO;
 	private ColorDTO color;
 	private SizeDTO size;
 	private int amount;
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId() {
+		this.id = this.productDTO.getMaSp() + this.color.getId() + this.size.getId();
+	}
 	public ProductDTO getProductDTO() {
 		return productDTO;
 	}
