@@ -30,6 +30,7 @@ public class OrderDAOImpl implements OrderDAO{
 		Session session = sessionFactory.openSession();
 		String hql = "SELECT Max(D.maHD) FROM DonHang D WHERE D.nguoiDung = :nd";
 		Query query = session.createQuery(hql);
+		query.setParameter("nd", nd);
 		int maHD = (int) query.uniqueResult();
 		session.flush();
 		session.close();

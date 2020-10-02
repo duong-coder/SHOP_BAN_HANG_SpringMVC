@@ -42,8 +42,23 @@ $(document).ready(function() {
 	for(let i = 1; i < inputSelectItems.length; i++){
 		$(inputSelectItems[i]).click(function(){
 			getPriceItem();
+//			saveOrder();
 		});
 	}
+	
+	$("#btnSaveOrder").click(function(){
+//		alert("luu order");
+		let indexs = saveOrder();
+		$.post(
+				"/ShopBanHang/order/save-order",
+				{
+					indexs: indexs
+				},
+				function(data){
+					location.href = "/ShopBanHang";
+				}
+		);
+	});
 	
 	$("#deleteAll").click(function(){
 //		inputSelectItems.remove(0);
@@ -134,5 +149,33 @@ $(document).ready(function() {
 		}else{
 			$("#priceTemporary").text("0 đ");
 		}
+	}
+	function saveOrder(){
+		let indexs = [];
+//		for(let i = 1; i < inputSelectItems.length; i++){
+//			if(inputSelectItems[i].checked){
+//				indexs.push("indexs=" + i);
+//				console.log(i);
+//			}
+//		}
+//		let urlSave = "/ShopBanHang/order/save-order";
+//		let data = "?";
+//		indexs.forEach((item, index) =>{
+//			if(index === 0){
+//				data+= item;
+//			}else{
+//				data+= "&" + item;
+//			}
+//		});
+//		urlSave = urlSave + data;
+//		console.log(urlSave);
+		for(let i = 1; i < inputSelectItems.length; i++){
+			if(inputSelectItems[i].checked){
+				indexs.push(i - 1);
+				console.log(i - 1);
+			}
+		}
+		
+		return indexs;
 	}
 });

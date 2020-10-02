@@ -1,6 +1,7 @@
 package com.duong.controller.customer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,16 +41,22 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/save-order", method = RequestMethod.GET)
-	public String getDetailOrder(HttpSession session) {
-		OrderDTO order = (OrderDTO) session.getAttribute("order");
-		if(order != null) {
+	public String getDetailOrder(HttpSession session, 
+			@RequestParam(value = "indexs") int... indexs) {
+		OrderDTO orderInSesson = (OrderDTO) session.getAttribute("order");
+		if(orderInSesson != null) {
 			UserDTO userDTO = (UserDTO) session.getAttribute("userLogin");
-			List<OrderDetailDTO> detailDTOs = order.getOrderDetailDTOs();
+			List<OrderDetailDTO> detailDTOs = orderInSesson.getOrderDetailDTOs();
+			List<OrderDetailDTO> detailDTOInsert = new ArrayList<OrderDetailDTO>();
+			for(int i:indexs) {
+				detailDTOInsert.add(detailDTOs.get(i - 1));
+			}
+			
 			OrderDTO orderDTO = new OrderDTO();
 			orderDTO.setUser(userDTO);
-			orderDTO.setStatus(order.isStatus());
-			orderDTO.setDate(order.getDate());
-			orderDTO.setOrderDetailDTOs(detailDTOs);
+			orderDTO.setStatus(orderInSesson.isStatus());
+			orderDTO.setDate(orderInSesson.getDate());
+			orderDTO.setOrderDetailDTOs(detailDTOInsert);
 			
 			try {
 				orderService.insert(orderDTO);
@@ -61,13 +68,65 @@ public class OrderController {
 			try {
 				orderDTO.setMaHD(orderService.getIdOrder(orderDTO.getUser()));
 				orderDetailService.insert(orderDTO);
+				
+				for(int i = indexs.length - 1; i >= 0; i--) {
+					detailDTOs.remove(indexs[i] - 1);
+				}
+//				orderInSesson.getOrderDetailDTOs().clear();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("loi them don hang");
 			}
 		}
-		
+		for(int i:indexs) {
+			System.out.println(i);
+		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/save-order", method = RequestMethod.POST)
+	public String postDetailOrder(HttpSession session, 
+			@RequestParam(value = "indexs[]") int[] indexs) {
+//		OrderDTO orderInSesson = (OrderDTO) session.getAttribute("order");
+//		if(orderInSesson != null) {
+//			UserDTO userDTO = (UserDTO) session.getAttribute("userLogin");
+//			List<OrderDetailDTO> detailDTOs = orderInSesson.getOrderDetailDTOs();
+//			List<OrderDetailDTO> detailDTOInsert = new ArrayList<OrderDetailDTO>();
+//			for(int i:indexs) {
+//				detailDTOInsert.add(detailDTOs.get(i - 1));
+//			}
+//			
+//			OrderDTO orderDTO = new OrderDTO();
+//			orderDTO.setUser(userDTO);
+//			orderDTO.setStatus(orderInSesson.isStatus());
+//			orderDTO.setDate(orderInSesson.getDate());
+//			orderDTO.setOrderDetailDTOs(detailDTOInsert);
+//			
+//			try {
+//				orderService.insert(orderDTO);
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				System.out.println("loi them don hang");
+//			}
+//			try {
+//				orderDTO.setMaHD(orderService.getIdOrder(orderDTO.getUser()));
+//				orderDetailService.insert(orderDTO);
+//				
+//				for(int i = indexs.length - 1; i >= 0; i--) {
+//					detailDTOs.remove(indexs[i] - 1);
+//				}
+////				orderInSesson.getOrderDetailDTOs().clear();
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				System.out.println("loi them don hang");
+//			}
+//		}
+		for(int i:indexs) {
+			System.out.println(i);
+		}
 		return "redirect:/";
 	}
 }

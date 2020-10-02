@@ -89,7 +89,7 @@
                         <span id="priceTotal" style="color: orangered;">0 đ</span>
                     </div>
                     <div class="btn-buy-order">
-                        <a href="<c:url value="/order/save-order" />"><button class="btn btn-warning">XÁC NHẬN GIỎ HÀNG</button></a>
+                        <button id="btnSaveOrder" class="btn btn-warning">XÁC NHẬN GIỎ HÀNG</button>
                     </div>
                 </div>
             </div>
