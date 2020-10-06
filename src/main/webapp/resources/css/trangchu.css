@@ -42,6 +42,14 @@ body, html {
 .u-box-san-pham{
     padding-bottom: 50px;
 }
+.u-box-san-pham > div > div{
+	max-width: 100%;
+	transform: scale(0);
+  	transition: 0.5s;
+}
+.u-box-san-pham > div > div.box-product-animate{
+	transform: scale(1);
+}
 .u-title-sanpham{
     padding: 70px;
 }
@@ -49,6 +57,7 @@ body, html {
     margin-top: 20px;
     margin-bottom: 10px;
 }
+
 .footer{
     background-image: url("../image/footer-background-dark.png");
     background-image: url("../../static/image/image-app/footer-background-dark.png");

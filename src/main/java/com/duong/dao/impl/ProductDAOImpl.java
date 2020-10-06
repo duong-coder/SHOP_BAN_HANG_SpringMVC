@@ -91,4 +91,20 @@ public class ProductDAOImpl implements ProductDAO{
 		
 		return null;
 	}
+	
+	@Override
+	public List<SanPham> getProductLimit(int index, int limit) throws Exception{
+		index = (index-1) * limit;
+		Session session = sessionFactory.openSession();
+		String hql = "from SanPham";
+		Query query = session.createQuery(hql);
+		query.setFirstResult(index);
+		query.setMaxResults(limit);
+
+		List<SanPham> sanphams = query.list();
+		session.close();
+		
+		return sanphams;
+	}
+	
 }

@@ -10,6 +10,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,23 +29,27 @@ import com.duong.uitils.ProductUitils;
 
 @Controller
 @RequestMapping("/products")
+@PropertySource(value = "classpath:product.properties")
 public class ProductHomeController {
 	@Autowired
 	private ProductService productService;
-	
 	@Autowired
 	private ProductDetailService productDetailService;
-	
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private Environment environment;
 	
 	@RequestMapping(value = "/all-product", method = RequestMethod.GET)
 	public String showAllProduct(HttpServletRequest request) {
 		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
 		List<CategoryDTO> categoryDTOs = new ArrayList<CategoryDTO>();
+		int sizeAllSP = 0;
+		int limit = new Integer(environment.getProperty("product.limit-inPage"));
 		try {
-			productDTOs = productService.getAllProduct();
+			productDTOs = productService.getProductLimit(1, limit);
 			categoryDTOs = categoryService.getAllCategory();
+			sizeAllSP = productService.countAllProduct();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,6 +57,7 @@ public class ProductHomeController {
 		
 		request.setAttribute("productDTOs", productDTOs);
 		request.setAttribute("categoryDTOs", categoryDTOs);
+		request.setAttribute("pagination", sizeAllSP/limit + 1);
 		
 		return "/home-user/danh-sach-san-pham";
 	}

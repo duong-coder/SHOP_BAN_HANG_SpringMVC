@@ -19,4 +19,8 @@ public interface ProductService {
 	List<ProductDTO> getTopProduct(int soLuong) throws Exception;
 	
 	List<ProductDetailDTO> getAllProductDetailByMaSP(String maSP) throws Exception;
+
+	List<ProductDTO> getProductLimit(int index, int limit) throws Exception;
+
+	int countAllProduct() throws Exception;
 }

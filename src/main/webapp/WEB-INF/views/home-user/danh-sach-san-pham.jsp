@@ -38,8 +38,8 @@
             <h2 class="u-title-sanpham">TẤT CẢ SẢN PHẨM</h2>
             <div class="row row-cols-1 row-cols-md-4">
             	<c:forEach items="${productDTOs }" var="productDTO">
-            		<div class="col mb-4">
-	                    <div class="card h-100">
+            		<div class="col mb-4 box-product">
+	                    <div class="card h-100 product-limit">
 	                    	<a href="<c:url value="/products/${productDTO.maSp }" />">
 	                        	<img src="<c:url value="/imageProducts/${productDTO.tenAnh }" />" class="card-img-top u-image-san-pham"
 	                            	alt="..." width="253px" height="253px">
@@ -52,10 +52,30 @@
                 	</div>
             	</c:forEach>
             </div>
+            <nav aria-label="Page navigation example">
+			  <ul class="pagination justify-content-center">
+			    <li class="page-item">
+			      <div class="page-link" aria-label="Previous" data-limit="1">
+			        <span aria-hidden="true">&laquo;</span>
+			        <span class="sr-only">Previous</span>
+			      </div>
+			    </li>
+			    <c:forEach begin="1" end="${pagination }" var="limit">
+				    <li class="page-item"><div class="page-link">${limit }</div></li>
+			    </c:forEach>
+			    <li class="page-item">
+			      <div class="page-link" aria-label="Next" data-limit="${pagination })">
+			        <span aria-hidden="true">&raquo;</span>
+			        <span class="sr-only">Next</span>
+			      </div>
+			    </li>
+			  </ul>
+			</nav>
         </div>
         
         <jsp:include page="../../layouts/footer-home.jsp"/>
     </div>
+    <script type="text/javascript" src="<c:url value="/static/js/danh-sach-san-pham.js"/>"></script>
 </body>
 
 </html>
