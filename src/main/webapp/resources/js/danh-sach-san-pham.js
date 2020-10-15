@@ -1,9 +1,21 @@
 $(document).ready(function(){
-	$(".box-product").addClass("box-product-animate");
+//	$(".box-product").addClass("box-product-animate");
+	showProductOnLoad();
 	var listPage = $(".page-item");
 	let a = listPage[1].textContent;
 	console.log(listPage.length);
 	let indexPage = 1;
+
+	function showProductOnLoad(){
+		let products = $(".box-product");
+        for(let i = 0; i < products.length; i++){
+			setTimeout(()=>{
+				$( $(".box-product")[i] ).addClass("box-product-animate");
+				
+			}, i*200);
+        }
+	};
+	
 	$(".page-item").click(function(){
 		let index = this.textContent;
 		console.log(index);

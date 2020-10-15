@@ -6,5 +6,7 @@ import com.duong.model.UserDTO;
 public interface OrderService {
 	public void insert(OrderDTO orderDTO) throws Exception;
 
-	int getIdOrder(UserDTO userDTO);
-}
+	int getIdOrder(UserDTO userDTO) throws Exception ;
+
+	int getAmountOrderByStatus(boolean status) throws Exception;
+} 

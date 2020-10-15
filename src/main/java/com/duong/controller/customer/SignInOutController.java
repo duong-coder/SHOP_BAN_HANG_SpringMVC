@@ -47,11 +47,11 @@ public class SignInOutController {
 		if(dto == null) {
 			return "redirect:/sign-in";
 		}
+		httpSession.setAttribute("userLogin", dto);
 		if("ROLE_ADMIN".equals(dto.getRole())) {
-			return "redirect:/admin/all-user";
+			return "redirect:/admin";
 		}
 //		ra.addFlashAttribute("userDTO", dto);
-		httpSession.setAttribute("userLogin", dto);
 		return "redirect:/";
 	}
 	

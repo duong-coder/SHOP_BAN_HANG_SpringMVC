@@ -13,6 +13,7 @@
 	
 	<link rel="stylesheet" href="<c:url value='/static/css/chi-tiet-san-pham.css'/>"> 
     <link rel="stylesheet" href="<c:url value="/static/css/trangchu.css"/>">
+    <script type="text/javascript" src="<c:url value="/static/js/danh-sach-san-pham.js"/>"></script>
 	
 </head>	
 
@@ -52,30 +53,12 @@
                 	</div>
             	</c:forEach>
             </div>
-            <nav aria-label="Page navigation example">
-			  <ul class="pagination justify-content-center">
-			    <li class="page-item">
-			      <div class="page-link" aria-label="Previous" data-limit="1">
-			        <span aria-hidden="true">&laquo;</span>
-			        <span class="sr-only">Previous</span>
-			      </div>
-			    </li>
-			    <c:forEach begin="1" end="${pagination }" var="limit">
-				    <li class="page-item"><div class="page-link">${limit }</div></li>
-			    </c:forEach>
-			    <li class="page-item">
-			      <div class="page-link" aria-label="Next" data-limit="${pagination })">
-			        <span aria-hidden="true">&raquo;</span>
-			        <span class="sr-only">Next</span>
-			      </div>
-			    </li>
-			  </ul>
-			</nav>
+            <jsp:include page="../../layouts/pagination.jsp"></jsp:include>
         </div>
         
         <jsp:include page="../../layouts/footer-home.jsp"/>
     </div>
-    <script type="text/javascript" src="<c:url value="/static/js/danh-sach-san-pham.js"/>"></script>
+    
 </body>
 
 </html>

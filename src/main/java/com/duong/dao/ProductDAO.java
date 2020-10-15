@@ -3,6 +3,7 @@ package com.duong.dao;
 import java.util.List;
 
 import com.duong.entity.ChiTietSanPham;
+import com.duong.entity.DanhMuc;
 import com.duong.entity.SanPham;
 
 public interface ProductDAO {
@@ -21,4 +22,6 @@ public interface ProductDAO {
 	List<ChiTietSanPham> getAllProductDetailByMaSP(String maSP) throws Exception;
 
 	List<SanPham> getProductLimit(int index, int limit) throws Exception;
+
+	List<SanPham> getProductLimitAndCategory(DanhMuc danhMuc, int index, int limit) throws Exception;
 }

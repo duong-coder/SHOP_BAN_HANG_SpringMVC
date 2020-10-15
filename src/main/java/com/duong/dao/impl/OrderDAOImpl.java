@@ -1,5 +1,7 @@
 package com.duong.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,9 +26,20 @@ public class OrderDAOImpl implements OrderDAO{
 		session.close();
 		
 	}
-	
+	//true - da giao / false - chua giao
 	@Override
-	public int getIdDonHang(NguoiDung nd) {
+	public List<DonHang> getOrderByStatus(boolean status) throws Exception {
+		Session session = sessionFactory.openSession();
+		String hql = "FROM DonHang D WHERE D.tinhTrang = :tt";
+		Query query = session.createQuery(hql);
+		query.setParameter("tt", status);
+		List<DonHang> dhs = query.list();
+		session.close();
+		
+		return dhs;
+	}
+	@Override
+	public int getIdDonHang(NguoiDung nd) throws Exception {
 		Session session = sessionFactory.openSession();
 		String hql = "SELECT Max(D.maHD) FROM DonHang D WHERE D.nguoiDung = :nd";
 		Query query = session.createQuery(hql);

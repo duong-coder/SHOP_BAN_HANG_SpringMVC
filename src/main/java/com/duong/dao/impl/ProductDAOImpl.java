@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.duong.dao.ProductDAO;
 import com.duong.entity.ChiTietSanPham;
+import com.duong.entity.DanhMuc;
 import com.duong.entity.SanPham;
 
 @Repository
@@ -98,6 +99,22 @@ public class ProductDAOImpl implements ProductDAO{
 		Session session = sessionFactory.openSession();
 		String hql = "from SanPham";
 		Query query = session.createQuery(hql);
+		query.setFirstResult(index);
+		query.setMaxResults(limit);
+
+		List<SanPham> sanphams = query.list();
+		session.close();
+		
+		return sanphams;
+	}
+	
+	@Override
+	public List<SanPham> getProductLimitAndCategory(DanhMuc danhMuc, int index, int limit) throws Exception{
+		index = (index-1) * limit;
+		Session session = sessionFactory.openSession();
+		String hql = "from SanPham where danhMuc = :category";
+		Query query = session.createQuery(hql);
+		query.setParameter("category", danhMuc);
 		query.setFirstResult(index);
 		query.setMaxResults(limit);
 

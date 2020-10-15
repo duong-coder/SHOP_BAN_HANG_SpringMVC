@@ -13,7 +13,8 @@
 	
     <link rel="stylesheet" href="<c:url value='/static/css/chi-tiet-san-pham.css'/>"> 
     <link rel="stylesheet" href="<c:url value='/static/css/trangchu.css'/>">
-
+    <script type="text/javascript" src="<c:url value="/static/js/trangchu.js"/>"></script>
+	
 </head>
 
 <body>
@@ -52,23 +53,24 @@
             <h2 class="u-title-sanpham">SẢN PHẨM HOT</h2>
             <div class="row row-cols-1 row-cols-md-4">
             	<c:forEach items="${productDTOs }" var="productDTO">
-            		<div class="col mb-4">
-                    <div class="card h-100">
-                    	<a href="<c:url value="/products/${productDTO.maSp }" />">
-	                        <img src="<c:url value="/imageProducts/${productDTO.tenAnh }" />" class="card-img-top u-image-san-pham"
-	                            alt="..." width="253px" height="253px">
-	                    </a>
-                        <div class="card-body">
-                            <h5 class="card-title">${productDTO.tenSp }</h5>
-                            <p class="card-text" style="color: rgb(240, 109, 109);">${productDTO.gia }</p>
-                        </div>
-                    </div>
-                </div>
+	            	<div class="col mb-4 box-product ">
+	                    <div class="card h-100">
+	                    	<a href="<c:url value="/products/${productDTO.maSp }" />">
+		                        <img src="<c:url value="/imageProducts/${productDTO.tenAnh }" />" class="card-img-top u-image-san-pham"
+		                            alt="..." width="253px" height="253px">
+		                    </a>
+	                        <div class="card-body">
+	                            <h5 class="card-title">${productDTO.tenSp }</h5>
+	                            <p class="card-text" style="color: rgb(240, 109, 109);">${productDTO.gia }</p>
+	                        </div>
+	                    </div>
+	                </div>
             	</c:forEach>
             </div>
         </div>
         
         <jsp:include page="../../layouts/footer-home.jsp"/>
+        
     </div>
 </body>
 

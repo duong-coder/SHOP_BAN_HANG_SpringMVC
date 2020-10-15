@@ -49,15 +49,15 @@ $(document).ready(function() {
 	$("#btnSaveOrder").click(function(){
 //		alert("luu order");
 		let indexs = saveOrder();
-		$.post(
-				"/ShopBanHang/order/save-order",
-				{
-					indexs: indexs
-				},
-				function(data){
-					location.href = "/ShopBanHang";
-				}
-		);
+//		$.post(
+//				"/ShopBanHang/order/save-order",
+//				{
+//					indexs: indexs
+//				},
+//				function(data){
+//					location.href = "/ShopBanHang";
+//				}
+//		);
 	});
 	
 	$("#deleteAll").click(function(){

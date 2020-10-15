@@ -23,4 +23,6 @@ public interface ProductService {
 	List<ProductDTO> getProductLimit(int index, int limit) throws Exception;
 
 	int countAllProduct() throws Exception;
+
+	List<ProductDTO> getProductLimitAndCategory(int category, int index, int limit) throws Exception;
 }

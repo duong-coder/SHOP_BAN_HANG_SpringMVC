@@ -211,7 +211,33 @@ public class ProductServiceImpl implements ProductService{
 		
 		return productDTOs;
 	}
-	
+	@Override
+	public List<ProductDTO> getProductLimitAndCategory(int category, int index, int limit) throws Exception{
+		DanhMuc danhMuc = new DanhMuc();
+		danhMuc.setMaDanhMuc(category);
+		
+		List<SanPham> sanphams = productDAO.getProductLimitAndCategory(danhMuc, index, limit);
+		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
+		sanphams.forEach((sp) ->{
+			ProductDTO dto = new ProductDTO();
+			dto.setMaSp(sp.getMaSP());
+			dto.setTenSp(sp.getTenSP());
+			dto.setMoTa(sp.getMoTa());
+			dto.setGia(sp.getGia());
+			dto.setTenAnh(sp.getAnhMoTa());
+			
+			DanhMuc dm = sp.getDanhMuc();
+			CategoryDTO catDto = new CategoryDTO();
+			catDto.setId(dm.getMaDanhMuc());
+			catDto.setName(dm.getTenDanhMuc());
+			catDto.setImage(dm.getHinhAnh());
+			dto.setCategory(catDto);
+			
+			productDTOs.add(dto);
+		});
+		
+		return productDTOs;
+	}
 	@Override
 	public int countAllProduct() throws Exception{
 		List<SanPham> sp = productDAO.getAllProduct();

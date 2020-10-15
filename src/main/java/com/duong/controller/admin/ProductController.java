@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,28 +24,44 @@ import com.duong.uitils.ReadWrite;
 
 @Controller
 @RequestMapping(value = "/admin")
+@PropertySource(value = "classpath:product.properties")
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
 	@Autowired
 	private CategoryService categoryService;
-	
+	@Autowired
+	private Environment environment;
 	@Autowired
 	ReadWrite readWrite;
 
 	@RequestMapping(value = "/all-product", method = RequestMethod.GET)
 	public String getAllProduct(HttpServletRequest request) {
-		List<ProductDTO> productDTOs = null;
+		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
+		List<CategoryDTO> categoryDTOs = new ArrayList<CategoryDTO>();
+		int sizeAllSP = 0;
+		double limit = new Integer(environment.getProperty("product.limit-inPage-admin"));
 		try {
-			productDTOs = productService.getAllProduct();
+			productDTOs = productService.getProductLimit(1,(int) limit);
+			categoryDTOs = categoryService.getAllCategory();
+			sizeAllSP = productService.countAllProduct();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("productDTOs", productDTOs);
-		return "product/view-all-product";
+		request.setAttribute("products", productDTOs);
+		request.setAttribute("categories", categoryDTOs);
+		request.setAttribute("pagination", (int) Math.ceil(sizeAllSP/limit));
+//		System.out.println(Math.floor(sizeAllSP/limit));
+//		int a = 142;
+//		System.out.println(a / 100); 					= 1 
+//		System.out.println(Math.ceil(a / 100));			= 1.0
+//		System.out.println(a / 100.0);					= 1.42
+//		System.out.println(Math.ceil(a / 100.0));		= 2.0
+//		System.out.println((int) Math.ceil(a / 100.0));	= 2	
+		
+		return "admin/product";
 	}
 
 	@RequestMapping(value = "/add-product", method = RequestMethod.GET)

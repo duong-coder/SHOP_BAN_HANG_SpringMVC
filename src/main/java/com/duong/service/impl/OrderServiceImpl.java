@@ -1,6 +1,7 @@
 package com.duong.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,9 +42,20 @@ public class OrderServiceImpl implements OrderService{
 		
 		orderDAO.insert(donHang);
 	}
-	
+	public List<OrderDTO> getOrderByStatus(boolean status) throws Exception {
+		List<DonHang> donHangs = orderDAO.getOrderByStatus(status);
+		
+		return null;
+	}
 	@Override
-	public int getIdOrder(UserDTO userDTO) {
+	public int getAmountOrderByStatus(boolean status) throws Exception {
+		int amount = -1;
+		amount = orderDAO.getOrderByStatus(status).size();
+		
+		return amount; 
+	}
+	@Override
+	public int getIdOrder(UserDTO userDTO) throws Exception {
 		NguoiDung nd = new NguoiDung();
 		nd.setId(userDTO.getID());
 		
