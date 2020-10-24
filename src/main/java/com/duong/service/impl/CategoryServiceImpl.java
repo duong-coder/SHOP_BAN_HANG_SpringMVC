@@ -61,6 +61,12 @@ public class CategoryServiceImpl implements CategoryService{
 		});
 		return productDTOs;
 	}
+	
+	@Override
+	public int getAmountProductByCategory(int id) throws Exception{
+		
+		return categoryDAO.getAllProductByCategory(id).size();
+	}
 
 	@Override
 	public List<CategoryDTO> getAllCategory() throws Exception {

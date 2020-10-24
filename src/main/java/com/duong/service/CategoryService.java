@@ -18,4 +18,6 @@ public interface CategoryService {
 	List<ProductDTO> getAllProductByCategory(int id) throws Exception;
 	
 	List<CategoryDTO> getAllCategory() throws Exception;
+
+	int getAmountProductByCategory(int id) throws Exception;
 }

@@ -12,7 +12,7 @@
 			<li class="page-item"><div class="page-link">${limit }</div></li>
 		</c:forEach>
 		<li class="page-item">
-			<div class="page-link" aria-label="Next" data-limit="${pagination })">
+			<div class="page-link" aria-label="Next" data-limit="${pagination }">
 				<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
 			</div>
 		</li>

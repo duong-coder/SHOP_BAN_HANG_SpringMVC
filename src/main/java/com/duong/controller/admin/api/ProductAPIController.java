@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.duong.model.ProductDTO;
+import com.duong.service.CategoryService;
 import com.duong.service.ProductService;
 
 @RestController
@@ -22,6 +23,8 @@ public class ProductAPIController {
 //	private ProductDetailService productDetailService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CategoryService categoryService;
 	@Autowired
 	private Environment environment;
 	
@@ -54,5 +57,31 @@ public class ProductAPIController {
 		}
 		
 		return productDTOs;
+	}
+	
+	@RequestMapping(value = "/product-limit-category/{categoryID}")
+	public int getAmountProductByCategory(@PathVariable("categoryID") int idCategory) {
+		int amountProductCategory = 0;
+		try {
+			amountProductCategory = categoryService.getAmountProductByCategory(idCategory);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return amountProductCategory;
+	}
+	
+	@RequestMapping(value = "/amount-product")
+	public int getAmountProduct() {
+		int amountProduct = 0;
+		try {
+			amountProduct = productService.countAllProduct();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return amountProduct;
 	}
 }

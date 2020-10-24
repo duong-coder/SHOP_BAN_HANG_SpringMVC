@@ -56,8 +56,6 @@ body {
 						</div>
 						<button type="button" class="btn btn-success">Thêm sản
 							phẩm</button>
-						<button type="button" class="btn btn-warning">Cập nhật
-							sản phẩm</button>
 						<button type="button" class="btn btn-danger">Xóa</button>
 						<table class="table table-hover tbl-product">
 							<thead class="thead-dark">
@@ -91,7 +89,10 @@ body {
 										<td>${product.gia}</td>
 										<td>${product.getCategory().getName()}</td>
 										<td><button type="button" class="btn btn-primary btn-add-detail">Thêm
-												chi tiết</button></td>
+												chi tiết</button>
+											<button type="button" class="btn btn-warning btn-update">Cập nhật
+												sản phẩm</button>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
