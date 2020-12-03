@@ -54,8 +54,12 @@ body {
 						<div class="pro-head">
 							<h2>Products</h2>
 						</div>
-						<button type="button" class="btn btn-success">Thêm sản
-							phẩm</button>
+						<c:url var="urlAddProduct" value="add-product"></c:url>
+						<a href="${urlAddProduct}">
+							<button type="button" class="btn btn-success">
+								Thêm sản phẩm
+							</button>
+						</a>
 						<button type="button" class="btn btn-danger">Xóa</button>
 						<table class="table table-hover tbl-product">
 							<thead class="thead-dark">
@@ -66,9 +70,9 @@ body {
 									<th scope="col">Giá tiền</th>
 									<th scope="col">
 										<div class="input-group mb-1">
-											<div class="input-group-prepend">
+											<!-- <div class="input-group-prepend">
 												<button id="btn-category" class="btn btn-primary" type="button">Tìm</button>
-											</div>
+											</div> -->
 											<select class="custom-select" id="category">
 												<option selected value="0">All</option>
 												<c:forEach items="${categories }" var="category">
@@ -88,10 +92,11 @@ body {
 										<td>${product.tenSp }</td>
 										<td>${product.gia}</td>
 										<td>${product.getCategory().getName()}</td>
-										<td><button type="button" class="btn btn-primary btn-add-detail">Thêm
-												chi tiết</button>
-											<button type="button" class="btn btn-warning btn-update">Cập nhật
-												sản phẩm</button>
+										<td><button type="button" class="btn btn-primary btn-add-detail">Xem chi tiết sản phẩm</button>
+											<a href="<c:url value="edit-product"/>">
+												<button type="button" class="btn btn-warning btn-update">Cập nhật
+													sản phẩm</button>
+											</a>
 										</td>
 									</tr>
 								</c:forEach>

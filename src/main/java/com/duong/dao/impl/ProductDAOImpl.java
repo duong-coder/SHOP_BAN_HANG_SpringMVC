@@ -50,6 +50,7 @@ public class ProductDAOImpl implements ProductDAO{
 	public SanPham getProuctByMaSp(String maSp) throws Exception {
 		Session session = sessionFactory.openSession();
 		SanPham sp = (SanPham) session.get(SanPham.class, maSp);
+		System.out.println(sp.getChiTietSanPhams().size());
 		session.close();
 		return sp;
 	}
@@ -103,7 +104,8 @@ public class ProductDAOImpl implements ProductDAO{
 		query.setMaxResults(limit);
 
 		List<SanPham> sanphams = query.list();
-		session.close();
+		System.out.println(query.list().size());
+//		session.close();
 		
 		return sanphams;
 	}
@@ -119,6 +121,7 @@ public class ProductDAOImpl implements ProductDAO{
 		query.setMaxResults(limit);
 
 		List<SanPham> sanphams = query.list();
+		System.out.println(sanphams.size());
 		session.close();
 		
 		return sanphams;

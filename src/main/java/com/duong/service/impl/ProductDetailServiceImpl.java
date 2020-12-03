@@ -27,9 +27,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 	@Override
 	public void insertProductDetail(ProductDetailDTO pDetailDTO) throws Exception {
-		ProductDTO proDTO = pDetailDTO.getProductDTO();
+//		ProductDTO proDTO = pDetailDTO.getProductDTO();
 		SanPham sp = new SanPham();
-		sp.setMaSP(proDTO.getMaSp());
+//		sp.setMaSP(proDTO.getMaSp());
 //		sp.setTenSP(proDTO.getTenSp());
 //		sp.setMoTa(proDTO.getMoTa());
 //		sp.setGia(proDTO.getGia());
@@ -47,7 +47,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 		ChiTietSanPham ctsp = new ChiTietSanPham();
 		ctsp.setIdChiTiet(pDetailDTO.getId());
-		ctsp.setSanPham(sp);
+//		ctsp.setSanPham(sp);
 		ctsp.setMauSac(mauSac);
 		ctsp.setSizeSanPham(sizeSanPham);
 		ctsp.setSoLuong(pDetailDTO.getAmount());
@@ -74,7 +74,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 		ChiTietSanPham ctsp = new ChiTietSanPham();
 		ctsp.setIdChiTiet(maSP+maMau+maSize);
-		ctsp.setSanPham(sp);
+//		ctsp.setSanPham(sp);
 		ctsp.setMauSac(mauSac);
 		ctsp.setSizeSanPham(sizeSanPham);	
 		ctsp.setSoLuong(soLuong);
@@ -85,9 +85,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 	@Override
 	public void updateProductDetail(ProductDetailDTO proOld, ProductDetailDTO proNew) throws Exception {
-		ProductDTO proDTO = proOld.getProductDTO();
+//		ProductDTO proDTO = proOld.getProductDTO();
 		SanPham sp = new SanPham();
-		sp.setMaSP(proDTO.getMaSp());
+//		sp.setMaSP(proDTO.getMaSp());
 
 		ColorDTO colorDTO = proOld.getColor();
 		MauSac mauSac = new MauSac();
@@ -98,13 +98,13 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		sizeSanPham.setMaSize(sizeDTO.getId());
 
 		ChiTietSanPham ctspOld = new ChiTietSanPham();
-		ctspOld.setSanPham(sp);
+//		ctspOld.setSanPham(sp);
 		ctspOld.setMauSac(mauSac);
 		ctspOld.setSizeSanPham(sizeSanPham);
 		
-		ProductDTO proDTON = proNew.getProductDTO();
+//		ProductDTO proDTON = proNew.getProductDTO();
 		SanPham spN = new SanPham();
-		spN.setMaSP(proDTON.getMaSp());
+//		spN.setMaSP(proDTON.getMaSp());
 
 		ColorDTO colorDTON = proNew.getColor();
 		MauSac mauSacN = new MauSac();
@@ -115,7 +115,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		sizeSanPhamN.setMaSize(sizeDTON.getId());
 
 		ChiTietSanPham ctspNew = new ChiTietSanPham();
-		ctspNew.setSanPham(spN);
+//		ctspNew.setSanPham(spN);
 		ctspNew.setMauSac(mauSacN);
 		ctspNew.setSizeSanPham(sizeSanPhamN);
 		ctspNew.setSoLuong(proNew.getAmount());
@@ -131,40 +131,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	@Override
 	public ProductDetailDTO getProductDetail(String maSP, int maMau, int maSize) throws Exception {
 		ChiTietSanPham ctsp = productDetailDAO.getProductDetail(maSP, maMau, maSize);
-
-		SanPham sp = ctsp.getSanPham();
-		ProductDTO productDTO = new ProductDTO();
-		productDTO.setMaSp(sp.getMaSP());
-		productDTO.setTenSp(sp.getTenSP());
-		productDTO.setMoTa(sp.getMoTa());
-		productDTO.setGia(sp.getGia());
-		productDTO.setTenAnh(sp.getAnhMoTa());
-
-		MauSac mauSac = ctsp.getMauSac();
-		ColorDTO colorDTO = new ColorDTO();
-		colorDTO.setId(mauSac.getMaMau());
-		colorDTO.setColor(mauSac.getTenMau());
-
-		SizeSanPham sizeSP = ctsp.getSizeSanPham();
-		SizeDTO sizeDTO = new SizeDTO();
-		sizeDTO.setId(sizeSP.getMaSize());
-		sizeDTO.setSize(sizeSP.getSize());
-
-		SanPham sanPham = new SanPham();
-		sanPham.setMaSP(productDTO.getMaSp());
-		sanPham.setTenSP(productDTO.getTenSp());
-		sanPham.setMoTa(productDTO.getMoTa());
-		sanPham.setGia(productDTO.getGia());
-		sanPham.setAnhMoTa(productDTO.getTenAnh());
-
-		ProductDetailDTO productDetailDTO = new ProductDetailDTO();
-		productDetailDTO.setProductDTO(productDTO);
-		productDetailDTO.setColor(colorDTO);
-		productDetailDTO.setSize(sizeDTO);
-		productDetailDTO.setAmount(ctsp.getSoLuong());
-		productDetailDTO.setId();
-
-		return productDetailDTO;
+		ProductDetailDTO detailDTO = mapCTSPToProductDetail(ctsp);
+		
+		return detailDTO;
 	}
 	
 	@Override
@@ -205,5 +174,33 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		 */
 		return null;
 	}
+	
+	private ProductDetailDTO mapCTSPToProductDetail(ChiTietSanPham ctsp) {
+		SanPham sp = ctsp.getSanPham();
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setMaSp(sp.getMaSP());
+		productDTO.setTenSp(sp.getTenSP());
+		productDTO.setMoTa(sp.getMoTa());
+		productDTO.setGia(sp.getGia());
+		productDTO.setTenAnh(sp.getAnhMoTa());
 
+		MauSac mauSac = ctsp.getMauSac();
+		ColorDTO colorDTO = new ColorDTO();
+		colorDTO.setId(mauSac.getMaMau());
+		colorDTO.setColor(mauSac.getTenMau());
+
+		SizeSanPham sizeSP = ctsp.getSizeSanPham();
+		SizeDTO sizeDTO = new SizeDTO();
+		sizeDTO.setId(sizeSP.getMaSize());
+		sizeDTO.setSize(sizeSP.getSize());
+		
+		ProductDetailDTO detailDTO = new ProductDetailDTO();
+		detailDTO.setProductDTO(productDTO);
+		detailDTO.setColor(colorDTO);
+		detailDTO.setSize(sizeDTO);
+		detailDTO.setAmount(ctsp.getSoLuong());
+		detailDTO.setId(ctsp.getIdChiTiet());
+		
+		return detailDTO;
+	}
 }

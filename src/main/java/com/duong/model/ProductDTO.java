@@ -1,5 +1,7 @@
 package com.duong.model;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class ProductDTO {
@@ -10,6 +12,7 @@ public class ProductDTO {
 	private String tenAnh;
 	private CategoryDTO category;
 	private MultipartFile file;
+	private List<ProductDetailDTO> detailDTOs;
 	
 	public ProductDTO() {
 		// TODO Auto-generated constructor stub
@@ -69,6 +72,14 @@ public class ProductDTO {
 
 	public void setFile(MultipartFile file) {
 		this.file = file;
+	}
+
+	public List<ProductDetailDTO> getDetailDTOs() {
+		return detailDTOs;
+	}
+
+	public void setDetailDTOs(List<ProductDetailDTO> detailDTOs) {
+		this.detailDTOs = detailDTOs;
 	}
 	
 	

@@ -9,10 +9,15 @@ public class ProductDetailDTO {
 	
 	
 	public String getId() {
-		return id;
+		return this.id;
 	}
-	public void setId() {
-		this.id = this.productDTO.getMaSp() + this.color.getId() + this.size.getId();
+	public void setId(String id) {
+//		if(!(id == null || id.trim().equals(""))) {
+//			this.id = id;
+//		}else {
+//			this.id = this.productDTO.getMaSp() + this.color.getId() + this.size.getId();
+//		}
+		this.id = id;
 	}
 	public ProductDTO getProductDTO() {
 		return productDTO;

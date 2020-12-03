@@ -24,4 +24,6 @@ public interface ProductDetailDAO {
 //	List<ChiTietSanPham> getAllProductDetailByIdSP(SanPham sp) throws HibernateException;
 	
 	List<ChiTietSanPham> getAllProductDetail() throws HibernateException;
+
+	List<ChiTietSanPham> getAllProductDetailByMaSP(String maSP) throws HibernateException;
 }

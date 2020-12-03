@@ -17,9 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.duong.model.CategoryDTO;
+import com.duong.model.ColorDTO;
 import com.duong.model.ProductDTO;
+import com.duong.model.SizeDTO;
 import com.duong.service.CategoryService;
+import com.duong.service.ColorService;
+import com.duong.service.ProductDetailService;
 import com.duong.service.ProductService;
+import com.duong.service.SizeService;
 import com.duong.uitils.ReadWrite;
 
 @Controller
@@ -30,7 +35,13 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	@Autowired
+	private ProductDetailService detailService;
+	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private SizeService sizeService;
+	@Autowired
+	private ColorService colorService;
 	@Autowired
 	private Environment environment;
 	@Autowired
@@ -41,7 +52,8 @@ public class ProductController {
 		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
 		List<CategoryDTO> categoryDTOs = new ArrayList<CategoryDTO>();
 		int sizeAllSP = 0;
-		double limit = new Integer(environment.getProperty("product.limit-inPage-admin"));
+		double limit = Double.valueOf(environment.getProperty("product.limit-inPage-admin"));
+		//sửa new Integer()
 		try {
 			productDTOs = productService.getProductLimit(1,(int) limit);
 			categoryDTOs = categoryService.getAllCategory();
@@ -67,36 +79,22 @@ public class ProductController {
 	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
 	public String addProduct(HttpServletRequest request) {
 		List<CategoryDTO> categoryDTOs = new ArrayList<CategoryDTO>();
+		List<ColorDTO> colorDTOs = new ArrayList<ColorDTO>();
+		List<SizeDTO> sizeDTOs = new ArrayList<SizeDTO>();
 		try {
 			categoryDTOs = categoryService.getAllCategory();
+			colorDTOs = colorService.getAllColor();
+			sizeDTOs = sizeService.getAllSizeSanPham();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("productDTO", new ProductDTO());
 		request.setAttribute("categoryDTOs", categoryDTOs);
+		request.setAttribute("sizeDTOs", sizeDTOs);
+		request.setAttribute("colorDTOs", colorDTOs);
 		
-		return "product/form-product";
-	}
-
-	@RequestMapping(value = "/add-product", method = RequestMethod.POST)
-	public String addProduct(HttpServletRequest request, @ModelAttribute(value = "productDTO") ProductDTO productDTO,
-			@RequestParam(value = "file") MultipartFile file,
-			@RequestParam("categoryID") int categoryId) {
-		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setId(categoryId);
-		productDTO.setCategory(categoryDTO);
-		try {
-			readWrite.saveImageProduct(file);
-			productDTO.setTenAnh(file.getOriginalFilename());
-			productService.insertProduct(productDTO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "product/form-product";
-		}
-
-		return "redirect:/admin/all-product";
+		return "admin/add-product";
 	}
 
 	@RequestMapping(value = "/infor-product/{maSp}", method = RequestMethod.GET)
@@ -116,42 +114,31 @@ public class ProductController {
 	@RequestMapping(value = "/edit-product/{maSp}", method = RequestMethod.GET)
 	public String editProductByMaSP(HttpServletRequest request, 
 			@PathVariable(value = "maSp") String maSp) {
-		ProductDTO productDTO = null;
+		ProductDTO productDTO = new ProductDTO();
 		List<CategoryDTO> categoryDTOs = new ArrayList<CategoryDTO>();
+		List<ColorDTO> colorDTOs = new ArrayList<ColorDTO>();
+		List<SizeDTO> sizeDTOs = new ArrayList<SizeDTO>();
 		try {
 			productDTO = productService.getProuctByMaSp(maSp);
 			categoryDTOs = categoryService.getAllCategory();
+			colorDTOs = colorService.getAllColor();
+			sizeDTOs = sizeService.getAllSizeSanPham();
 			
-			request.setAttribute("productDTO", productDTO);
-			request.setAttribute("categoryDTOs", categoryDTOs);
 			System.out.println(productDTO.getTenAnh());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("productDTO", productDTO);
+		request.setAttribute("categoryDTOs", categoryDTOs);
+		request.setAttribute("sizeDTOs", sizeDTOs);
+		request.setAttribute("colorDTOs", colorDTOs);
+		
 
-		return "product/form-edit-product";
+		return "admin/add-product";
 	}
 
-	@RequestMapping(value = "/edit-product", method = RequestMethod.POST)
-	public String editProductByMaSP(HttpServletRequest request, @ModelAttribute(value = "productDTO") ProductDTO dto,
-			@RequestParam(value = "file") MultipartFile file,
-			@RequestParam("categoryID") int categoryId) {
-		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setId(categoryId);
-		dto.setCategory(categoryDTO);
-		try {
-			readWrite.saveImageProduct(file);
-			dto.setTenAnh(file.getOriginalFilename());
-			productService.updateProduct(dto);
-		} catch (Exception e) {
-			e.printStackTrace();
-
-			return "redirect:/admin/edit-product/" + dto.getMaSp();
-		}
-
-		return "redirect:/admin/infor-product/" + dto.getMaSp();
-	}
 	
 	@RequestMapping(value = "/delete-product/{maSp}", method = RequestMethod.GET)
 	public String deteleProductByMaSP(@PathVariable(value = "maSp") String maSp) {

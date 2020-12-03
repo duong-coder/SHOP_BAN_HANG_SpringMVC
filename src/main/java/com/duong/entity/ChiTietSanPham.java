@@ -3,6 +3,8 @@ package com.duong.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the chitietsanpham database table.

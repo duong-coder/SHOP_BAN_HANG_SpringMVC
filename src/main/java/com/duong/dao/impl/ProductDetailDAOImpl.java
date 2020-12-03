@@ -54,7 +54,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO{
 		query.setParameter("sizespN", ctspNew.getSizeSanPham());
 		query.setParameter("soLuongN", ctspNew.getSoLuong());
 
-		query.setParameter("sanphamO", ctspOld.getSanPham());
+//		query.setParameter("sanphamO", ctspOld.getSanPham());
 		query.setParameter("mausacO", ctspOld.getMauSac());
 		query.setParameter("sizespO", ctspOld.getSizeSanPham());
 
@@ -126,11 +126,25 @@ public class ProductDetailDAOImpl implements ProductDetailDAO{
 	}
 	
 	@Override
+	public  List<ChiTietSanPham> getAllProductDetailByMaSP(String maSP) throws HibernateException {
+		SanPham sp = new SanPham();
+		sp.setMaSP(maSP);
+		
+		Session session = sessionFactory.openSession();
+		String hql = "from ChiTietSanPham as CTSP where CTSP.sanPham = :sanpham";
+		Query query = session.createQuery(hql);
+		query.setParameter("sanpham", sp);
+		List<ChiTietSanPham> ctsps = (List<ChiTietSanPham>) query.list();
+		session.close();
+		return ctsps;
+	}
+	
+	@Override
 	public List<ChiTietSanPham> getAllProductDetail() throws HibernateException {
 		Session session = sessionFactory.openSession();
 		Criteria criteria = session.createCriteria(ChiTietSanPham.class);
 		List<ChiTietSanPham> ctsps = criteria.list();
-		
+		session.close();
 		return ctsps;
 	}
 	

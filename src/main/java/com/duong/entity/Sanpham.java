@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the sanpham database table.
@@ -35,7 +37,7 @@ public class SanPham implements Serializable {
 	@JoinColumn(name = "MaDanhMuc")
 	private DanhMuc danhMuc;
 	
-	@OneToMany(mappedBy="sanPham")
+	@OneToMany(mappedBy="sanPham", cascade = CascadeType.ALL)
 	private List<ChiTietSanPham> chiTietSanPhams;
 
 	public SanPham() {
