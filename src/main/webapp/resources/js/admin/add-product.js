@@ -66,10 +66,19 @@ $(document).ready(function() {
 					contentType: "application/json",
 					type: "POST",
 					data:JSON.stringify(productNew),
-					success: function(products){
-						console.log("OK", products);
+					success: function(status){
+						console.log("OK", status);
+						alert("Cập nhật thành công.");
+					},
+					error: function(error){
+						console.log(error);
+						alert("Cập nhật thất bại.");
 					}
 		    	});
+			},
+			error: function(error){
+				console.log(error);
+				alert("Bạn chưa chọn ảnh.");
 			}
     	});
     });
@@ -95,8 +104,17 @@ $(document).ready(function() {
 					data:JSON.stringify(productNew),
 					success: function(products){
 						console.log("OK", products);
+						alert("Thêm thành công.");
+					},
+					error: function(error){
+						console.log(error);
+						alert("Thêm thất bại.");
 					}
 		    	});
+			},
+			error: function(error){
+				console.log(error);
+				alert("Bạn chưa chọn ảnh.");
 			}
     	});
 	});	

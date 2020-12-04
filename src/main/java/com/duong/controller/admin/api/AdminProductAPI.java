@@ -106,13 +106,14 @@ public class AdminProductAPI {
 		return amountProduct;
 	}
 	@RequestMapping(value="/add-product", method = RequestMethod.POST)
-	public void addProduct(@RequestBody ProductDTO productDTO) {
+	public void addProduct(@RequestBody ProductDTO productDTO) throws Exception {
 		System.out.println(productDTO.getMaSp());
 		try {
 			productService.insertProduct(productDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new Exception("Loi them san pham");
 		}
 	}
 	
@@ -143,7 +144,7 @@ public class AdminProductAPI {
 	
 
 	@RequestMapping(value = "/edit-product", method = RequestMethod.POST)
-	public void editProductByMaSP(@RequestBody ProductDTO productDTO) {
+	public void editProductByMaSP(@RequestBody ProductDTO productDTO) throws Exception {
 		List<ProductDetailDTO> detailsWillBeDelete = new ArrayList<ProductDetailDTO>();
 		try {
 			ProductDTO productDTOBefore = productService.getProuctByMaSp(productDTO.getMaSp());
@@ -168,6 +169,20 @@ public class AdminProductAPI {
 			productService.updateProduct(productDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new Exception("Loi cap nhat san pham");
+		}
+	}
+	
+	@RequestMapping(value = "/delete-product", method = RequestMethod.POST)
+	public void deleteproductByMaSP(@RequestParam("maSPs[]") String[] maSPs) throws Exception {
+		for(String maSP : maSPs) {
+			System.out.println(maSP);
+			try {
+				productService.deleteProductByMaSp(maSP);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception("Loi xoa san pham");
+			}
 		}
 	}
 	

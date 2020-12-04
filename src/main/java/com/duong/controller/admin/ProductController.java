@@ -99,16 +99,16 @@ public class ProductController {
 
 	@RequestMapping(value = "/infor-product/{maSp}", method = RequestMethod.GET)
 	public String showDetailProduct(HttpServletRequest request, @PathVariable(value = "maSp") String maSp) {
-		ProductDTO productDTO = null;
+		ProductDTO productDTO = new ProductDTO();
 		try {
 			productDTO = productService.getProuctByMaSp(maSp);
-			request.setAttribute("productDTO", productDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.setAttribute("productDTO", productDTO);
 
-		return "product/view-product";
+		return "admin/infor-product";
 	}
 
 	@RequestMapping(value = "/edit-product/{maSp}", method = RequestMethod.GET)

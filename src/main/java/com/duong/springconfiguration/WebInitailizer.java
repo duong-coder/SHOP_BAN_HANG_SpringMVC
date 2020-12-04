@@ -18,7 +18,8 @@ public class WebInitailizer implements WebApplicationInitializer {
 		applicationContext.register(SpringBeansConfiguration.class);
 
 		DispatcherServlet dispatcherServlet = new DispatcherServlet(applicationContext);
-
+		dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
+		
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher", dispatcherServlet);
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");

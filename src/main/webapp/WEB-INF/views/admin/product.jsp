@@ -54,18 +54,18 @@ body {
 						<div class="pro-head">
 							<h2>Products</h2>
 						</div>
-						<c:url var="urlAddProduct" value="add-product"></c:url>
+						<c:url var="urlAddProduct" value="/admin/add-product"></c:url>
 						<a href="${urlAddProduct}">
 							<button type="button" class="btn btn-success">
 								Thêm sản phẩm
 							</button>
 						</a>
-						<button type="button" class="btn btn-danger">Xóa</button>
+						<button type="button" id="btnDelete" class="btn btn-danger">Xóa</button>
 						<table class="table table-hover tbl-product">
 							<thead class="thead-dark">
 								<tr>
 									<th>STT</th>
-									<th scope="col"><input class="select-item" type="checkbox"></th>
+									<th scope="col"><input class="select-item" id="selectAll" type="checkbox"></th>
 									<th scope="col">Tên sản phẩm</th>
 									<th scope="col">Giá tiền</th>
 									<th scope="col">
@@ -87,13 +87,16 @@ body {
 							<tbody class="list-product">
 								<c:forEach items="${products }" var="product" varStatus="loop">
 									<tr>
-										<th>${loop.index + 1}</th>
-										<td scope="row"><input class="select-item" type="checkbox"></td>
+										<th>${loop.index + 1}<input type="text" class="masp" data="maSP" value="${product.maSp }" hidden></th>
+										<td scope="row"><input class="select-item select-delete" type="checkbox"></td>
 										<td>${product.tenSp }</td>
 										<td>${product.gia}</td>
 										<td>${product.getCategory().getName()}</td>
-										<td><button type="button" class="btn btn-primary btn-add-detail">Xem chi tiết sản phẩm</button>
-											<a href="<c:url value="edit-product"/>">
+										<td>
+											<a href="<c:url value="/admin/infor-product/${product.maSp }"/>">
+												<button type="button" class="btn btn-primary btn-add-detail">Xem chi tiết</button>
+											</a>
+											<a href="<c:url value="/admin/edit-product/${product.maSp }"/>">
 												<button type="button" class="btn btn-warning btn-update">Cập nhật
 													sản phẩm</button>
 											</a>

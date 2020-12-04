@@ -72,11 +72,22 @@ body {
                                         </div>
                                         <div class="form-group">
                                             <label for="hangSP">Hãng</label>
-                                            <form:select class="form-control" path="category.id" id="hangSP" name="categoryID">
-												<c:forEach items="${categoryDTOs }" var="categoryDTO">
-													<form:option value="${categoryDTO.id }">${categoryDTO.name } ${category.id }</form:option>
-												</c:forEach>
-											</form:select>
+                                            <c:choose>
+                                            	<c:when test="${not empty productDTO.maSp }">
+                                            		<form:select class="form-control" path="category.id" id="hangSP" name="categoryID">
+														<c:forEach items="${categoryDTOs }" var="categoryDTO">
+															<form:option value="${categoryDTO.id }">${categoryDTO.name }</form:option>
+														</c:forEach>
+													</form:select>
+                                            	</c:when>
+                                            	<c:otherwise>
+                                            		<select class="form-control" id="hangSP" name="categoryID">
+                                            			<c:forEach items="${categoryDTOs }" var="categoryDTO">
+															<option value="${categoryDTO.id }">${categoryDTO.name }</option>
+														</c:forEach>
+                                            		</select>
+                                            	</c:otherwise>
+                                            </c:choose>
                                         </div>
                                         <div class="form-group">
                                             <label for="giaSP">Giá sản phẩm</label>

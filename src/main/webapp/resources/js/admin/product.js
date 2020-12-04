@@ -14,6 +14,43 @@ $(document).ready(function(){
 		reloadPagination(categoryID, 10);
 	});
 	
+	$("#btnDelete").click(function(){
+		let arrItemWillDelete = [];
+		let items = $("input.select-delete");
+		for(let i = 0; i<items.length; i++){
+			let isDelete = $(items[i]).prop("checked");
+			if(isDelete){
+				let maSP = $($("input[data='maSP']")[i]).val();
+				arrItemWillDelete.push(maSP);
+			}
+		}
+		console.log(arrItemWillDelete);
+		"/delete-product"
+		$.ajax({
+			url: "/ShopBanHang/api/admin/delete-product",
+			type: "POST",
+			data: {
+				maSPs: arrItemWillDelete
+			},
+			success: function(){
+				alert("Xoa thanh cong");
+				getProductsAjax(urlGetProducts, indexPage);
+			},
+			error: function(error){
+				console.log(error);
+				alert("Xoa that bai");
+			}
+		});
+	});
+	
+	$("#selectAll").click(function(){
+		let flagSelectAll = $("#selectAll").prop("checked");
+		let items = $("input.select-delete");
+		for(let i = 0; i<items.length; i++){
+			$(items[i]).prop("checked", flagSelectAll);
+		}
+	});
+	
 	function addEventInPagination(){
 		$(".page-item").click(function(){
 			let index = this.textContent;
@@ -47,12 +84,15 @@ $(document).ready(function(){
 				$(".list-product").empty();
 				for(let i = 0; i < products.length; i++){
 					let trTag =  $("<tr></tr>");
-					let tdIndex = $("<th></th>").text(i + 1);
-					let tdInput = $("<td scope='row'><input class='select-item' type='checkbox'></td>");
+					let tdIndex = $("<th>" + (i + 1) + "<input type='text' class='masp' data='maSP' value='"+ products[i].maSp +"' hidden></th>");
+					let tdInput = $("<td scope='row'><input class='select-item select-delete' type='checkbox'></td>");
 					let tdNameProduct = $("<td></td>").text(products[i].tenSp);
 					let tdPriceProduct = $("<td></td>").text(products[i].gia);
 					let tdCategoryProduct = $("<td></td>").text(products[i].category.name);
-					let tdBtnAddetail = $("<td><button type='button' class='btn btn-primary btn-add-detail'>Thêm chi tiết</button><button type='button' class='btn btn-warning btn-update'>Cập nhật sản phẩm</button></td>");
+					let tdBtnAddetail = $("<td>" +
+							"<a href='/ShopBanHang/admin/infor-product/"+products[i].maSp +"'><button type='button' class='btn btn-primary btn-add-detail'>Xem chi tiết</button></a>" +
+							"<a href='/ShopBanHang/admin/edit-product/"+products[i].maSp +"'><button type='button' class='btn btn-warning btn-update'>Cập nhật sản phẩm</button></a>" +
+							"</td>");
 					
 					trTag.append(tdIndex);
 					trTag.append(tdInput);
@@ -128,4 +168,5 @@ $(document).ready(function(){
 			});
 		});
 	}
+	
 });
